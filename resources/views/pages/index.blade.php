@@ -3,6 +3,7 @@
 @section('title','Inicio')
 
 @section('navbar-extend')
+  {{-- Page information --}}
   <div class="banner">
     <div class="banner-layer banner-text">
       <div class="col-xs-12">
@@ -36,9 +37,6 @@
   </div>
   <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/account.png')}}" alt="Imagen para productos"></a>
 </div>
-
-
-
 
   {{-- @foreach ($data['lastProducts'] as $product)
     @if ($product->image != null)
