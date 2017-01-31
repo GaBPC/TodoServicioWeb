@@ -26,6 +26,10 @@
               <center>
                 <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
               </center>
+            @else
+              <center>
+                <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+              </center>
             @endif
             <strong>Precio unitario: </strong>${{ $product->price }}
             <br>
@@ -53,7 +57,7 @@
 
   <div class="col-xs-12 col-md-4">
     <div class="well" style="background-color: #42A5F5; color: white">
-      <h3>Ver categoria:</h3>
+      <h3>Ver por categoria:</h3>
       <ul>
         @foreach ($categories as $category)
           <li><h4><a href="{{ route('categories.show',$category->id) }}" style="color: white">{{$category->category_name}}</a></h4></li>

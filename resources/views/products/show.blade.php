@@ -8,7 +8,13 @@
     <div class="col-xs-12 col-md-8">
       <center>
         @if ($product->image != null)
-          <img class="img-responsive img-thumbnail" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+          <center>
+            <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+          </center>
+        @else
+          <center>
+            <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+          </center>
         @endif
         <h1><b>{{ $product->name }}</b></h1>
         <h4>Precio unitario: ${{ $product->price }}</h4>
