@@ -17,7 +17,6 @@
 @endsection
 
 @section('content')
-
 <div class="row">
   {{-- Products page link --}}
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-4">
@@ -30,7 +29,6 @@
     <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/maps.png')}}" alt="Imagen para productos"></a>
   </div>
 </div>
-
 <hr>
 
 <div class="row">
@@ -41,34 +39,5 @@
     </div>
     <a href="{{ route('register') }}" class="btn btn-primary btn-block btn-lg">Registrarse</a>
   </div>
-
 </div>
-
-
-  {{-- @foreach ($data['lastProducts'] as $product)
-    @if ($product->image != null)
-      <div class="col-xs-6 col-md-4">
-        <a href="{{route('products.show', $product->id)}}" class="btn btn-default btn-sm btn-block">
-          <center>
-            <img class="img-responsive img-index" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
-            <hr>
-            <h4>{{ $product->name }}</h4>
-            <h4>${{ $product->price }}</h4>
-          </center>
-        </a>
-        <br>
-      </div>
-    @endif
-  @endforeach
-
-  <div class="row">
-    <div class="col-xs-12">
-      <hr>
-    </div>
-    <div class="col-xs-12 col-md-offset-4 col-md-4">
-      <a href="{{route('products.index')}}" class="btn btn-info btn-block">Ver más</a>
-    </div>
-  </div> --}}
-
-
 @endsection

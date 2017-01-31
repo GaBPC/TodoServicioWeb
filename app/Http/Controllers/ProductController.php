@@ -31,8 +31,10 @@ class ProductController extends Controller
   {
     // Create a variable and sotre all the products in it from the Database
     $products = Product::orderBy('id','desc')->paginate(5);
+
+    $categories = Category::all();
     // Return a view and pass in the above variable
-    return view('products.index')->withProducts($products);
+    return view('products.index')->withProducts($products)->withCategories($categories);
   }
 
   /**
@@ -80,7 +82,12 @@ class ProductController extends Controller
 
     $product->save();
 
-    $product->tags()->sync($request->tags, false);
+    if (isset($request->tags)) {
+      $product->tags()->sync($request->tags);
+    }
+    else {
+      $product->tags()->sync(array());
+    }
     // Sets de flash success message
     Session::flash('successMessage','El producto ha sido agregado correctamente');
     // Redirect to next page
