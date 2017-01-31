@@ -11,7 +11,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Creado</th>
-            <th></th>
+            <th>Ultima modifiación</th>
           </tr>
         </thead>
 
@@ -19,9 +19,9 @@
           @foreach ($tags as $tag)
             <tr>
               <th>{{ $tag->id }}</th>
-              <td>{{ $tag->name }}</td>
-              <td>{{ $tag->created_at }}</td>
-              <td><a href="{{ route('tags.show',$tag->id) }}" class="btn btn-sm btn-default btn-block">Ver</a></td>
+              <td><a href="{{ route('tags.show',$tag->id) }}">{{ $tag->name }}</a></td>
+              <td>{{ date('d/m/Y - H:i',strtotime($tag->created_at)) }}</td>
+              <td>{{ date('d/m/Y - H:i',strtotime($tag->updated_at)) }}</td>
             </tr>
           @endforeach
         </tbody>

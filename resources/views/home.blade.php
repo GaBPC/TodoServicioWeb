@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-          <div class="panel-heading">Panel de usuario</div>
+          <div class="panel-heading">Panel de administrador</div>
 
           <div class="panel-body">
             <center>
@@ -21,7 +21,21 @@
                   <hr>
                   <label>E-mail:</label> {{ Auth::user()->email }}
                   <hr>
-                  <label>Registrado desde:</label> {{ Auth::user()->created_at }}
+                  <label>Registrado desde:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->created_at)) }}
+                  <br>
+                  <label>Ultimo cambio de contraseña:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->updated_at)) }}
+                  <hr>
+                  <div class="row">
+                    <h4>¿Que desea administrar?:</h4>
+                    <div class="col-xs-12 col-md-6">
+                      <br>
+                      <a href="{{ route('tags.index') }}" class="btn btn-primary btn-block">Palabras claves</a>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <br>
+                      <a href="{{ route('categories.index') }}" class="btn btn-info btn-block">Categorías</a>
+                    </div>
+                  </div>
                   <hr>
                 </div>
                 <form id="logout-form" class="form-horizontal" action="{{ route('logout') }}" method="POST">
@@ -34,7 +48,5 @@
         </div>
       </div>
     </div>
-
-
   </div>
 @endsection

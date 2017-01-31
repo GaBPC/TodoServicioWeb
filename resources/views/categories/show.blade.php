@@ -10,8 +10,6 @@
   </div>
   <hr>
 
-
-
   {{-- Start of row --}}
   <div class="row">
     <div class="col-xs-12">
@@ -52,4 +50,6 @@
         <div class="col-xs-12">
         @endif
       @endforeach
-    @endsection
+    </div>
+  </div>
+@endsection
