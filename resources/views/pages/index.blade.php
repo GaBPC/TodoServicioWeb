@@ -18,6 +18,7 @@
 
 @section('content')
 
+{{-- asdasd --}}
 <hr>
 {{-- Products page link --}}
 <div class="col-xs-8 col-md-4">
