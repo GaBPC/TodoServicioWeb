@@ -19,7 +19,7 @@
       <div class="panel-group text-center">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <strong>{{ $product->name }}</strong>
+            <strong><h3>{{ $product->name }}</h3></strong>
           </div>
           <div class="panel-body">
             @if ($product->image != null)
@@ -45,21 +45,22 @@
         </div>
       </div>
     @endforeach
+
+    <div class="col-xs-12 text-center">
+      {!! $products->links() !!}
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-4">
     <div class="well" style="background-color: #42A5F5; color: white">
       <h3>Ver categoria:</h3>
       <ul>
-        <li><h4>Todas</h4></li>
         @foreach ($categories as $category)
-          <li><h4><a href="{{ route('categories.show',$category->id) }}">{{$category->category_name}}</a></h4></li>
+          <li><h4><a href="{{ route('categories.show',$category->id) }}" style="color: white">{{$category->category_name}}</a></h4></li>
         @endforeach
       </ul>
     </div>
   </div>
 
-  <div class="col-xs-12 text-center">
-    {!! $products->links() !!}
-  </div>
+
 @endsection
