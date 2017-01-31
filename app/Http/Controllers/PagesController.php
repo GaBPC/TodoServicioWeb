@@ -10,18 +10,11 @@ class PagesController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth', ['except' => ['getIndex','getSearch']]);
+    $this->middleware('auth', ['except' => ['getIndex','getSearch','getContact']]);
   }
 
   public function getIndex(){
-
-    $lastProducts = Product::orderBy('id', 'desc')->take(6)->get();
-
-    $data = array(
-      'lastProducts' => $lastProducts
-    );
-
-    return view('pages.index')->withData($data);
+    return view('pages.index');
   }
 
   public function getCarrito(){
@@ -30,5 +23,10 @@ class PagesController extends Controller
 
   public function getSearch(){
     return 'Search';
+  }
+
+  public function getContact()
+  {
+    return view('pages.contact');
   }
 }

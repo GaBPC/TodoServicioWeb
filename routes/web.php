@@ -17,6 +17,8 @@ Route::get('/', 'PagesController@getIndex');
 Route::get('carrito', 'PagesController@getCarrito');
 // Search route
 Route::get('search', 'PagesController@getSearch');
+// Contact route
+Route::get('contact', 'PagesController@getContact');
 // Products routes
 Route::resource('products', 'ProductController');
 // Categories routes
