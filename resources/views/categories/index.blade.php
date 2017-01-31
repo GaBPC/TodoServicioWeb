@@ -12,6 +12,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Creada</th>
+            <th>Ultima modifiación</th>
           </tr>
         </thead>
 
@@ -19,13 +20,15 @@
           @foreach ($categories as $category)
             <tr>
               <th>{{ $category->id }}</th>
-              <td>{{ $category->category_name }}</td>
-              <td>{{ $category->created_at }}</td>
+              <td><a href="{{ route('categories.show',$category->id) }}">{{ $category->category_name }}</a></td>
+              <td>{{ date('d/m/Y - H:i',strtotime($category->created_at)) }}</td>
+              <td>{{ date('d/m/Y - H:i',strtotime($category->updated_at)) }}</td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
+
     <div class="col-xs-12 col-md-4">
       <div class="well">
         {!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
@@ -39,5 +42,6 @@
     </div>
 
   </div>
+
 
 @endsection

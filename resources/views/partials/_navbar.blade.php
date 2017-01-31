@@ -16,8 +16,6 @@
       <ul class="nav navbar-nav">
         <li class="divider-vertical hidden-xs hidden-sm"></li>
         <li class="{{ Request::is('products') ? "active" : "" }}"><a href="{{ route('products.index') }}">Productos</a></li>
-        <li class="{{ Request::is('categories') ? "active" : "" }}"><a href="{{ route('categories.index') }}">Categorías</a></li>
-        <li class="{{ Request::is('tags') ? "active" : "" }}"><a href="{{ route('tags.index') }}">Tags</a></li>
         {{-- <li class="{{ Request::is('search') ? "active" : "" }}"><a href="{{ url('search') }}">Buscar</a></li> --}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
