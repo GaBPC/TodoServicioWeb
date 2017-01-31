@@ -18,19 +18,18 @@
 @section('content')
 
 <hr>
+{{-- Products page link --}}
 <div class="col-xs-8 col-md-4">
   <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/products.png')}}" alt="Imagen para productos"></a>
 </div>
-
-
-
+{{-- Location page link --}}
 <div class="col-xs-8 col-md-4">
   <div class="visible-xs visible-sm">
     <br>
   </div>
   <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/maps.png')}}" alt="Imagen para productos"></a>
 </div>
-
+{{-- Account page link --}}
 <div class="col-xs-8 col-md-4">
   <div class="visible-xs visible-sm">
     <br>
