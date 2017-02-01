@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth', ['except' => ['getIndex','getSearch','getContact']]);
+    $this->middleware('auth', ['except' => ['getIndex','getSearch','getContact', 'postSearch']]);
   }
 
   public function getIndex(){
