@@ -22,9 +22,9 @@ footer{
 }
 
 .my-footer-header{
-  border-top-right-radius: 45px;
-  border-top-left-radius: 45px;
-  background-color: #90CAF9;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: black;
   color: white;
 }
 /*

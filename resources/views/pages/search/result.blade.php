@@ -4,13 +4,16 @@
 
 @section('navbar-extend')
   <div class="jumbotron text-center" style="background-color:#8BC34A ; color: white;">
-    <h2>Estos son los productos que coinciden con su búsqueda:</h2>
+    <div class="container">
+      <h1>Hemos encontrado esto:</h1>
+      <hr>
+    </div>
   </div>
 @endsection
 
 @section('content')
   <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <a href="{{ url('search') }}" class="btn btn-danger btn-block"><< Volver</a>
+    <a href="{{ url('search') }}" class="btn btn-success btn-block"><< Volver</a>
   </div>
   <div class="col-xs-12">
     <hr>
@@ -21,7 +24,7 @@
       @foreach ($tag->products as $index => $product)
         <div class="col-xs-12 col-md-3">
           <div class="panel-group text-center">
-            <div class="panel panel-primary">
+            <div class="panel panel-success">
               <div class="panel-heading">
                 <strong><h3>  {{ strlen($product->name) <= 15 ? $product->name : substr($product->name,0,15) . "..."}}</h3></strong>
               </div>
@@ -61,6 +64,6 @@
     <hr>
   </div>
   <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <a href="{{ url('search') }}" class="btn btn-danger btn-block"><< Volver</a>
+    <a href="{{ url('search') }}" class="btn btn-success btn-block"><< Volver</a>
   </div>
 @endsection
