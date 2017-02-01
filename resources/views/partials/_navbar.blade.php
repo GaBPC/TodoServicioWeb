@@ -18,7 +18,7 @@
         <li class="{{ Request::is('products') ? "active" : "" }}"><a href="{{ route('products.index') }}">Productos</a></li>
         <li class="{{ Request::is('contact') ? "active" : "" }}"><a href="{{ url('contact') }}">Contacto</a></li>
         <li><a href="{{ url('contact') }}">Ubicación</a></li>
-        {{-- <li class="{{ Request::is('search') ? "active" : "" }}"><a href="{{ url('search') }}">Buscar</a></li> --}}
+        <li class="{{ Request::is('search') ? "active" : "" }}"><a href="{{ url('search') }}">Buscar</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

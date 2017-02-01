@@ -15,8 +15,9 @@
 Route::get('/', 'PagesController@getIndex');
 // Ruta para ver el carrito de compras
 Route::get('carrito', 'PagesController@getCarrito');
-// Search route
+// Search routes
 Route::get('search', 'PagesController@getSearch');
+Route::post('search', 'PagesController@postSearch');
 // Contact route
 Route::get('contact', 'PagesController@getContact');
 // Products routes

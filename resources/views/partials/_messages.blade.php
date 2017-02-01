@@ -12,6 +12,13 @@
   </div>
 @endif
 
+{{-- Shows flash error message--}}
+@if (Session::has('errorMessage'))
+  <div class="alert alert-danger" role="alert">
+    <strong>Mensaje:</strong> {{ Session::get('errorMessage') }}
+  </div>
+@endif
+
 {{-- Shows errors messages --}}
 @if (count($errors) > 0)
   <div class="alert alert-danger" role="alert">
