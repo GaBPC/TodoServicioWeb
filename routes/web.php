@@ -24,6 +24,9 @@ Route::post('search', 'PagesController@postSearch');
 Route::get('contact', 'PagesController@getContact');
 // Location route
 Route::get('location', 'PagesController@getLocation');
+// Custom routes
+Route::get('custom', 'PagesController@getCustom');
+Route::post('custom', 'PagesController@postCustom');
 // Products routes
 Route::resource('products', 'ProductController');
 // Categories routes

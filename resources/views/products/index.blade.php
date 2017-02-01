@@ -3,12 +3,10 @@
 @section('title','Nuestros productos')
 
 @section('navbar-extend')
-  <div class="row">
-    <div class="jumbotron" style="background-color:#448AFF ; color: white;">
-      <div class="container text-center">
-        <h1>Nuestros productos.</h1>
-        <hr>
-      </div>
+  <div class="jumbotron" style="background-color:#448AFF ; color: white;">
+    <div class="container text-center">
+      <h1>Nuestros productos.</h1>
+      <hr>
     </div>
   </div>
 @endsection
@@ -57,7 +55,7 @@
 
   {{-- Personalized page link --}}
   <div class="col-xs-12 col-md-4">
-    <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
+    <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
     <br>
   </div>
 

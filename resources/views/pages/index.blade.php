@@ -25,7 +25,7 @@
     {{-- Personalized page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">
       <br>
-      <a href="#"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
+      <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
     </div>
     {{-- Location page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">

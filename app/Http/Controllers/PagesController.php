@@ -30,9 +30,13 @@ class PagesController extends Controller
     if($request['tag'] != null){
       $tag_request = $request['tag'];
       $tag = Tag::where('name',$tag_request)->first();
-      if($tag != null){
+      if($tag != null && count($tag->products) > 0){
         // Return the view with the tag because its no posible to pass $tag->products without iterating over it
         return view('pages.search.result')->withTag($tag);
+      }
+      else {
+        Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas');
+        return redirect()->to('search');
       }
     }
     Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas');
@@ -49,5 +53,22 @@ class PagesController extends Controller
 
   public function getDenied(){
     return view('denied');
+  }
+
+  public function getCustom(){
+    return view('pages.custom');
+  }
+
+  public function postCustom(){
+    $ret = "";
+    $request = request()->all();
+    $count =  $request['counter'];
+    for ($i=0; $i <= $count; $i++) {
+      if(isset($request['text'.$i]) && $request['text'.$i] != null){
+        $ret .= 'Item: ' . $request['text'.$i];
+        $ret .= ' Cantidad: ' . $request['number'.$i];
+      }
+    }
+    return $ret;
   }
 }
