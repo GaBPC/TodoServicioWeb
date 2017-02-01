@@ -11,5 +11,6 @@
   <!-- Own css -->
   <link rel="stylesheet" href="{{ asset('css/basic.css') }}">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/site-resources/favicon.png') }}">
   @yield('css')
 </head>
