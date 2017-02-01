@@ -35,6 +35,10 @@
                       <br>
                       <a href="{{ route('categories.index') }}" class="btn btn-info btn-block">Categorías</a>
                     </div>
+                    <div class="col-xs-12 col-md-6">
+                      <br>
+                      <a href="{{ route('products.create') }}" class="btn btn-success btn-block">Agregar producto</a>
+                    </div>
                   </div>
                   <hr>
                 </div>
