@@ -12,6 +12,7 @@
             <th>Nombre</th>
             <th>Creado</th>
             <th>Ultima modifiación</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -22,6 +23,13 @@
               <td><a href="{{ route('tags.show',$tag->id) }}">{{ $tag->name }}</a></td>
               <td>{{ date('d/m/Y - H:i',strtotime($tag->created_at)) }}</td>
               <td>{{ date('d/m/Y - H:i',strtotime($tag->updated_at)) }}</td>
+              <td>
+                <center>
+                  {!! Form::open(['route' => ['tags.destroy',$tag->id], 'method' => 'DELETE']) !!}
+                  {{ Form::submit('X',['class' => 'btn btn-danger btn-sm']) }}
+                  {!! Form::close() !!}
+                </center>
+              </td>
             </tr>
           @endforeach
         </tbody>

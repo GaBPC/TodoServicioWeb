@@ -5,13 +5,15 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use Session;
+use Auth;
+
 
 class CategoryController extends Controller
 {
 
   public function __construct()
   {
-    $this->middleware('auth', ['except' => ['index','show']]);
+    $this->middleware(['auth','admin'], ['except' => ['show']]);
   }
 
   /**
@@ -82,7 +84,8 @@ class CategoryController extends Controller
       return redirect()->route('categories.index');
     }
     else {
-      return 'Imposible borrar esa categoria';
+      Session::flash('errorMessage','Es imposible eliminar la categoria basica');
+      return redirect()->route('categories.show',$id);
     }
   }
 }

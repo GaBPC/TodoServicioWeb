@@ -11,6 +11,11 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+      DB::table('categories')->insert([
+        'category_name' => 'Categoria basica',
+        'created_at' => DB::raw('CURRENT_TIMESTAMP'),
+        'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
+      ]);
       for ($i=0; $i < 15; $i++) {
         DB::table('categories')->insert([
           'category_name' => 'cat'.$i,

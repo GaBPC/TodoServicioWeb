@@ -9,7 +9,7 @@ class TagController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth', ['except' => 'index']);
+    $this->middleware(['auth','admin'], ['except' => 'show']);
   }
 
   /**
@@ -20,9 +20,9 @@ class TagController extends Controller
   public function index()
   {
     $tags = Tag::all();
-
     return view ('tags.index')->withTags($tags);
   }
+
 
   /**
   * Store a newly created resource in storage.

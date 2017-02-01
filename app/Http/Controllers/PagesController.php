@@ -48,7 +48,6 @@ class PagesController extends Controller
   }
 
   public function getDenied(){
-    Session::flash('errorMessage','Usted no cuenta con las credenciales de autentificación suficientes para realziar esta acción');
     return view('denied');
   }
 }
