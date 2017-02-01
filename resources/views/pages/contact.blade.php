@@ -5,7 +5,7 @@
 @section('navbar-extend')
   <div class="row">
     <div class="jumbotron text-center" style="background-color:#7C4DFF ; color: white;">
-      <h1>Contactese con nosotros</h1>
+      <h1>Contactese con nosotros.</h1>
       <div class="container">
         <div class="col-xs-12">
           <hr>

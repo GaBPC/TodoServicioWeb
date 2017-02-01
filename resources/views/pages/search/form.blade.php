@@ -3,8 +3,13 @@
 @section('title','Buscar')
 
 @section('navbar-extend')
-  <div class="jumbotron text-center" style="background-color:#FF5722 ; color: white;">
-    <h2>Realice su búsqueda entre nuestros productos aquí:</h2>
+  <div class="row">
+    <div class="jumbotron" style="background-color:#FF5722 ; color: white;">
+      <div class="container text-center">
+        <h1>Busque entre nuestros productos:</h1>
+        <hr>
+      </div>
+    </div>
   </div>
 @endsection
 

@@ -10,16 +10,12 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth', ['except' => ['getIndex','getSearch','getContact', 'postSearch']]);
-  }
-
   public function getIndex(){
     return view('pages.index');
   }
 
   public function getCarrito(){
+    // Write a controller for this
     return view('pages.carrito');
   }
 
@@ -45,5 +41,9 @@ class PagesController extends Controller
 
   public function getContact()  {
     return view('pages.contact');
+  }
+
+  public function getLocation()  {
+    return view('pages.location');
   }
 }
