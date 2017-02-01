@@ -24,8 +24,8 @@ class PagesController extends Controller
   }
 
   public function getSearch(){
-    $tags = Tag::all();
-    $categories = Category::all();
+    $tags = Tag::orderBy('name','asc')->paginate(10);;
+    $categories = Category::orderBy('category_name','asc')->get();
     return view('pages.search.form')->withTags($tags)->withCategories($categories);
   }
 

@@ -12,9 +12,9 @@
   <center>
     {!! Form::open(array('url' => 'search', 'class' => 'form-inline', 'method' => 'post')) !!}
       <div class="form-group">
-        {{ Form::text('tag', null, array('class' => 'form-control', 'placeholder' => 'Ingrese las palabras clave', 'required' => '', 'maxlength' => '255')) }}
+        {{ Form::text('tag', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese la palabra clave', 'required' => '', 'maxlength' => '255')) }}
       </div>
-      <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+      <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> Buscar</button>
       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     {!! Form::close() !!}
   </center>
@@ -28,6 +28,10 @@
           <li><h4><a href="{{ route('tags.show',$tag->id) }}" style="color: black">{{$tag->name}}</a></h4></li>
         @endforeach
       </ul>
+      <div class="col-xs-12 text-center">
+        {!! $tags->links() !!}
+      </div>
+      &nbsp
     </div>
   </div>
 
