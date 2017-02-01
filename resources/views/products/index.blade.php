@@ -6,7 +6,7 @@
   <div class="row">
     <div class="jumbotron" style="background-color:#448AFF ; color: white;">
       <div class="container text-center">
-        <h1>Nuestros productos</h1>
+        <h1>Nuestros productos.</h1>
         <hr>
       </div>
     </div>

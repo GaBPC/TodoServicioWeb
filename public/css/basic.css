@@ -100,3 +100,8 @@ border-left: 1px solid #E0E0E0;
 .radius-border:hover{
   -webkit-filter: brightness(75%);
 }
+
+.gmap{
+  height: 300px;
+  width: 100%;
+}

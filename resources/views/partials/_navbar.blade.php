@@ -22,8 +22,8 @@
         <li class="{{ Request::is('contact') ? "active" : "" }}">
           <a href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span> Contacto</a>
         </li>
-        <li>
-          <a href="#"><span class="glyphicon glyphicon-map-marker"></span> Ubicación</a>
+        <li class="{{ Request::is('location') ? "active" : "" }}">
+          <a href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span> Ubicación</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

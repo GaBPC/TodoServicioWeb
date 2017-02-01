@@ -20,6 +20,8 @@ Route::get('search', 'PagesController@getSearch');
 Route::post('search', 'PagesController@postSearch');
 // Contact route
 Route::get('contact', 'PagesController@getContact');
+// Location route
+Route::get('location', 'PagesController@getLocation');
 // Products routes
 Route::resource('products', 'ProductController');
 // Categories routes

@@ -26,7 +26,7 @@
                   <label>Ultimo cambio de contraseña:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->updated_at)) }}
                   <hr>
                   <div class="row">
-                    <h4>¿Que desea administrar?:</h4>
+                    <h4>¿Qué desea administrar?:</h4>
                     <div class="col-xs-12 col-md-6">
                       <br>
                       <a href="{{ route('tags.index') }}" class="btn btn-primary btn-block">Palabras claves</a>
