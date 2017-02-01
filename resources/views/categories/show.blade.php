@@ -4,8 +4,13 @@
 
 @section('content')
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-9">
       <h1>{{ $category->category_name }} <small>Presente en {{ $category->products()->count() }} producto(s)</small></h1>
+    </div>
+    <div class="col-xs-3">
+      {!! Form::open(['route' => ['categories.destroy',$category->id], 'method' => 'DELETE']) !!}
+        {{ Form::submit('Eliminar',['class' => 'btn btn-danger btn-block pull-right', 'style' => 'margin-top: 30px']) }}
+      {!! Form::close() !!}
     </div>
   </div>
   <hr>
