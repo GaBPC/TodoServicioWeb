@@ -11,7 +11,7 @@
 @endsection
 
 @section('navbar-extend')
-  <div class="jumbotron" style="background-color:#F06292 ; color: white;">
+  <div class="jumbotron" style="background-color:#E1F5FE ; color: black;">
     <div class="container text-center">
       <h1>Complete el formulario para realizar su pedido o presupuesto.</h1>
       <hr>
@@ -25,7 +25,7 @@
   <div id="inputs">
     <div class="input-group" id="group0">
       <input type="text" class="form-control" id="text0" name="text0" placeholder="Ingrese la descripción">
-      <input type="number" class="form-control" id="number0" name="number0" placeholder="Ingrese la cantidad">
+      <input type="number" class="form-control" id="number0" name="number0" value="1" min="1">
       <span class="input-group-addon">
         <button type="button" id="button0" class="btn btn-link btn-xs" onclick="addInput()">
           <i id="glyph0" class="glyphicon glyphicon-plus" style="font-size: 23px"></i>
@@ -35,7 +35,7 @@
   </div>
   <hr>
   <div class="col-xs-12 col-md-offset-4 col-md-4">
-    {{ Form::submit('Enviar',array('class' => 'btn btn-success btn-block btn-lg')) }}
+    {{ Form::submit('Enviar',array('class' => 'btn btn-info btn-block btn-lg')) }}
   </div>
   {!! Form::close() !!}
 @endsection
@@ -71,7 +71,8 @@
     var number = document.createElement("input");
     number.type = "number";
     number.className += "form-control";
-    number.setAttribute('placeholder','Ingrese la cantidad');
+    number.setAttribute('value','1');
+    number.setAttribute('min','1');
     number.setAttribute('name','number' + cant);
     number.setAttribute('id','number' + cant);
 
