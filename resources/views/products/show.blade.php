@@ -39,13 +39,17 @@
         <hr>
         <div class="row">
           <div class="col-xs-12">
-            <div class="form-group">
-              {{ Form::number('cant', null, array('class' => 'form-control'))}}
-              <input type="submit" class="btn btn-success btn-block" value="Agregar al carrito">
-            </div>
+            <center>
+              {!! Form::open(array('route' => 'categories.index', 'method' => 'post', 'class' => 'form-inline')) !!}
+              <div class="form-group">
+                {{ Form::number('cant', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+              </div>
+              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar</button>
+              {!! Form::close() !!}
+            </center>
             <br>
           </div>
-          @if (Auth::user()->role == 1)
+          @if (Auth::check() && Auth::user()->role == 1)
             <div class="col-xs-6">
               {!! Html::linkRoute('products.edit', 'Modificar', array($product->id), array('class' => 'btn btn-primary btn-block')) !!}
             </div>

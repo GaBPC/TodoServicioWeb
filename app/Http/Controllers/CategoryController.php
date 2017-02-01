@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Category;
+use App\Product;
 use Session;
 
 class CategoryController extends Controller
@@ -64,29 +63,6 @@ class CategoryController extends Controller
   }
 
   /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function edit($id)
-  {
-    //
-  }
-
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
   * Remove the specified resource from storage.
   *
   * @param  int  $id
@@ -94,6 +70,19 @@ class CategoryController extends Controller
   */
   public function destroy($id)
   {
-    //
+    if($id != 1){
+      $products = Product::where('category_id',$id)->get();
+      foreach ($products as $product) {
+        $product->category_id = 1;
+        $product->save();
+      }
+      $category = Category::find($id);
+      $category->delete();
+      Session::flash('successMessage','La categoria ha sido eliminado correctamente');
+      return redirect()->route('categories.index');
+    }
+    else {
+      return 'Imposible borrar esa categoria';
+    }
   }
 }
