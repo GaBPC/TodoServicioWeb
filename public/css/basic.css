@@ -24,8 +24,8 @@ footer{
 .my-footer-header{
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-  background-color: black;
-  color: white;
+  background-color: #E0E0E0;
+  color: black;
 }
 /*
 .my-footer-body{
