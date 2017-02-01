@@ -24,22 +24,24 @@
                   <label>Registrado desde:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->created_at)) }}
                   <br>
                   <label>Ultimo cambio de contraseña:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->updated_at)) }}
-                  <hr>
-                  <div class="row">
-                    <h4>¿Qué desea administrar?:</h4>
-                    <div class="col-xs-12 col-md-6">
-                      <br>
-                      <a href="{{ route('tags.index') }}" class="btn btn-primary btn-block">Palabras claves</a>
+                  @if (Auth::user()->role == 1)
+                    <hr>
+                    <div class="row">
+                      <h4>¿Qué desea administrar?:</h4>
+                      <div class="col-xs-12 col-md-6">
+                        <br>
+                        <a href="{{ route('tags.index') }}" class="btn btn-primary btn-block">Palabras claves</a>
+                      </div>
+                      <div class="col-xs-12 col-md-6">
+                        <br>
+                        <a href="{{ route('categories.index') }}" class="btn btn-info btn-block">Categorías</a>
+                      </div>
+                      <div class="col-xs-12 col-md-6">
+                        <br>
+                        <a href="{{ route('products.create') }}" class="btn btn-success btn-block">Agregar producto</a>
+                      </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
-                      <br>
-                      <a href="{{ route('categories.index') }}" class="btn btn-info btn-block">Categorías</a>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                      <br>
-                      <a href="{{ route('products.create') }}" class="btn btn-success btn-block">Agregar producto</a>
-                    </div>
-                  </div>
+                  @endif
                   <hr>
                 </div>
                 <form id="logout-form" class="form-horizontal" action="{{ route('logout') }}" method="POST">

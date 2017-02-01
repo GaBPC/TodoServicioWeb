@@ -46,4 +46,9 @@ class PagesController extends Controller
   public function getLocation()  {
     return view('pages.location');
   }
+
+  public function getDenied(){
+    Session::flash('errorMessage','Usted no cuenta con las credenciales de autentificación suficientes para realziar esta acción');
+    return view('denied');
+  }
 }

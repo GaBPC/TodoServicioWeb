@@ -13,6 +13,8 @@
 
 // Index route
 Route::get('/', 'PagesController@getIndex');
+// Denied access route
+Route::get('denied', 'PagesController@getDenied');
 // Ruta para ver el carrito de compras
 Route::get('carrito', 'PagesController@getCarrito');
 // Search routes

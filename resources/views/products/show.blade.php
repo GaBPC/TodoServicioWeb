@@ -39,17 +39,22 @@
         <hr>
         <div class="row">
           <div class="col-xs-12">
-            <a href="#" class="btn btn-success btn-block">Agregar al carrito</a>
+            <div class="form-group">
+              {{ Form::number('cant', null, array('class' => 'form-control'))}}
+              <input type="submit" class="btn btn-success btn-block" value="Agregar al carrito">
+            </div>
             <br>
           </div>
-          <div class="col-xs-6">
-            {!! Html::linkRoute('products.edit', 'Modificar', array($product->id), array('class' => 'btn btn-primary btn-block')) !!}
-          </div>
-          <div class="col-xs-6">
-            {!! Form::open(array('route' => ['products.destroy', $product->id], 'method' => 'delete')) !!}
-            {{ Form::submit('Eliminar', array('class' => 'btn btn-danger btn-block')) }}
-            {!! Form::close() !!}
-          </div>
+          @if (Auth::user()->role == 1)
+            <div class="col-xs-6">
+              {!! Html::linkRoute('products.edit', 'Modificar', array($product->id), array('class' => 'btn btn-primary btn-block')) !!}
+            </div>
+            <div class="col-xs-6">
+              {!! Form::open(array('route' => ['products.destroy', $product->id], 'method' => 'delete')) !!}
+              {{ Form::submit('Eliminar', array('class' => 'btn btn-danger btn-block')) }}
+              {!! Form::close() !!}
+            </div>
+          @endif
           <div class="col-xs-12">
             <br>
             {!! Html::linkRoute('products.index', 'Ir al indice', array($product->id), array('class' => 'btn btn-default btn-block')) !!}
