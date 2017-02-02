@@ -13,101 +13,89 @@
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#E1F5FE ; color: black;">
     <div class="container text-center">
-      <h2>Complete el formulario para realizar su pedido o presupuesto.</h2>
+      <h2>Complete el formulario para solicitar su presupuesto.</h2>
     </div>
   </div>
 @endsection
 
 @section('content')
-  {!! Form::open(array('url' => 'custom', 'method' => 'POST')) !!}
-  <input type="hidden" id="counter" name="counter" value="0">
-  <div id="inputs">
-    <div class="input-group" id="group0">
-      <input type="text" class="form-control" id="text0" name="text0" placeholder="Ingrese la descripción">
-      <input type="number" class="form-control" id="number0" name="number0" value="1" min="1">
-      <span class="input-group-addon">
-        <button type="button" id="button0" class="btn btn-link btn-xs" onclick="addInput()">
-          <i id="glyph0" class="glyphicon glyphicon-plus" style="font-size: 23px"></i>
-        </button>
-      </span>
+  <div id="app">
+    {!! Form::open(array('url' => 'custom', 'method' => 'POST')) !!}
+    <input type="hidden" name="counter" v-bind:value="counter">
+    <table class="table">
+      <thead>
+        <th class="text-center">Descripción</th>
+        <th class="text-center">Cantidad</th>
+        <th class="text-center"></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">
+            <input id="description" class="form-control" type="text" placeholder="Ingrese la descripción">
+          </td>
+          <td class="text-center">
+            <input id="quantity" class="form-control" type="number" value="1" min="1">
+          </td>
+          <td class="text-center">
+            <input @click="addItem" type="button" class="btn btn-success btn-block" value="+">
+          </td>
+        </tr>
+        <tr v-for="item in items">
+          <td>
+            <input class="form-control" v-model="item.description" v-bind:name="'description' + item.id"/>
+          </td>
+          <td>
+            <input class="form-control" v-model="item.quantity" v-bind:name="'quantity' + item.id"/>
+          </td>
+          <td class="text-center">
+            <input @click="removeItem" type="button" v-bind:id="item.id" value="-" class="btn btn-danger btn-block">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <div class="col-xs-12 col-md-offset-4 col-md-4">
+      {{ Form::submit('Enviar',array('class' => 'btn btn-info btn-block')) }}
     </div>
+    {!! Form::close() !!}
   </div>
-  <hr>
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    {{ Form::submit('Enviar',array('class' => 'btn btn-info btn-block btn-lg')) }}
-  </div>
-  {!! Form::close() !!}
 @endsection
 
 @section('js')
-  <script type="text/javascript">
-  function deleteInput(number){
-    var div = document.getElementById("group" + number);
-    div.remove();
-  }
-
-  function addInput(){
-    var counter = document.getElementById("counter");
-    var cant = parseInt(counter.value);
-
-    cant += 1;
-    counter.setAttribute('value', cant);
-
-    var inputs_div = document.getElementById("inputs");
-
-    var div = document.createElement("div");
-    div.className += "input-group";
-    div.setAttribute('id','group' + cant)
-
-    var text = document.createElement("input");
-    text.type = "text";
-    text.className += "form-control";
-    text.setAttribute('placeholder','Ingrese la descripción');
-    text.setAttribute('name','text' + cant);
-    text.setAttribute('id','text' + cant);
-
-    var number = document.createElement("input");
-    number.type = "number";
-    number.className += "form-control";
-    number.setAttribute('value','1');
-    number.setAttribute('min','1');
-    number.setAttribute('name','number' + cant);
-    number.setAttribute('id','number' + cant);
-
-    var span = document.createElement("span");
-    span.className += "input-group-addon";
-
-    var button = document.createElement("button");
-    button.setAttribute('type','button');
-    button.setAttribute('class','btn btn-link btn-xs');
-    button.setAttribute('onclick','addInput()');
-    button.setAttribute('id','button' + cant);
-
-    var i = document.createElement("i");
-    i.className += "glyphicon glyphicon-plus";
-    i.setAttribute('style','font-size: 23px');
-    i.setAttribute('id','glyph' + cant);
-
-    button.appendChild(i);
-
-    span.appendChild(button);
-
-    div.appendChild(text);
-    div.appendChild(number);
-    div.appendChild(span);
-
-    inputs_div.append(div);
-
-    var prev_glyph = document.getElementById("glyph" + (cant-1));
-    prev_glyph.setAttribute('class','glyphicon glyphicon-minus');
-    prev_glyph.setAttribute('style','font-size: 23px; color: red;');
-
-    var prev_button = document.getElementById("button" + (cant-1));
-    prev_button.setAttribute('onclick','deleteInput('+ (cant-1) + ');')
-  }
-
-  // $(window).bind('beforeunload', function(){
-  //   return 'Si abandona esta página se perderan los productos agregados, ¿Esta seguro que desea salir?';
-  // });
+  <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+  <script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      counter: '0',
+      items: [ ]
+    },
+    methods: {
+      addItem: function(){
+        var description = document.getElementById('description');
+        var quantity = document.getElementById('quantity');
+        var quantityvalue = parseInt(quantity.value);
+        if(isNaN(quantityvalue) || quantityvalue < 1) { quantityvalue = 1 }
+        this.items.push({"description": description.value, "quantity": quantityvalue , "id":this.counter});
+        this.counter++;
+        description.value = "";
+        quantity.value = "1";
+      },
+      removeItem: function(){
+        var id = event.target.id;
+        var encontrado = false;
+        var i = 0;
+        while(i < this.items.length && !encontrado){
+          if(this.items[i].id == id){
+            encontrado = true;
+            this.items.splice(i, 1);
+          }
+          else {
+            i++;
+          }
+        }
+      }
+    }
+  })
   </script>
 @endsection
