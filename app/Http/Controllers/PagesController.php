@@ -77,8 +77,8 @@ class PagesController extends Controller
     // Saves the data to an array
     for ($i=0; $i <= $count; $i++) {
       // If the item $i is set
-      if(isset($request['text'.$i]) && $request['text'.$i] != null){
-        $data[$i] = array($request['text'.$i], $request['number'.$i]);
+      if(isset($request['description'.$i]) && $request['quantity'.$i] != null){
+        $data[$i] = array($request['description'.$i], $request['quantity'.$i]);
       }
     }
     // Saves the user's data
