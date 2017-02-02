@@ -2,6 +2,14 @@
 
 @section('title', 'Carrito')
 
+@section('navbar-extend')
+  <div class="jumbotron text-center" style="background-color:#E040FB ; color: white;">
+    <div class="container">
+      <h2>Este es el estado actual de su carrito de compras:</h2>
+    </div>
+  </div>
+@endsection
+
 @section('content')
   <div class="row">
     <div class="col-xs-12">

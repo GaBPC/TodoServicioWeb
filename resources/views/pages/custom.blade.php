@@ -13,8 +13,7 @@
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#E1F5FE ; color: black;">
     <div class="container text-center">
-      <h1>Complete el formulario para realizar su pedido o presupuesto.</h1>
-      <hr>
+      <h2>Complete el formulario para realizar su pedido o presupuesto.</h2>
     </div>
   </div>
 @endsection
@@ -42,7 +41,6 @@
 
 @section('js')
   <script type="text/javascript">
-
   function deleteInput(number){
     var div = document.getElementById("group" + number);
     div.remove();

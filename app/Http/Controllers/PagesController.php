@@ -43,11 +43,11 @@ class PagesController extends Controller
         return view('pages.search.result')->withTag($tag);
       }
       else {
-        Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas');
+        Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas, pero no dude en solicitar un presupuesto en nuestra sección de pedidos personalizados.');
         return redirect()->to('search');
       }
     }
-    Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas');
+    Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas, pero no dude en solicitar un presupuesto en nuestra sección de pedidos personalizados.');
     return redirect()->to('search');
   }
 
@@ -84,7 +84,7 @@ class PagesController extends Controller
     // Saves the user's data
     $data[$count + 1] = array(Auth::user()->name, Auth::user()->email);
     // Maatwebsite excel
-    Excel::create($user->email . time(), function($excel) use($data) {
+    Excel::create(Auth::user()->email . time(), function($excel) use($data) {
       // Sets the sheet name and puts the content
       $excel->sheet('Hoja 1', function($sheet) use($data) {
         // Sets the font

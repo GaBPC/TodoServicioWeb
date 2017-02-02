@@ -5,8 +5,7 @@
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#FFF59D ; color: black;">
     <div class="container text-center">
-      <h1>Donde encontrarnos.</h1>
-      <hr>
+      <h2>Donde encontrarnos.</h2>
     </div>
   </div>
 @endsection
