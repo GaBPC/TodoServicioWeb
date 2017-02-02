@@ -50,7 +50,7 @@
         <h2>¿Te interesa recibir las ultimas ofertas por mail?</h2>
       </div>
       <center>
-        {!! Form::open(array('url' => 'asdasd', 'class' => 'form-inline', 'method' => 'post')) !!}
+        {!! Form::open(array('url' => 'mailing', 'class' => 'form-inline', 'method' => 'post')) !!}
         {{ Form::email('email', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese su email', 'required' => '', 'maxlength' => '255')) }}
         <input type="submit" class="btn btn-info btn-lg" value="Enviar">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

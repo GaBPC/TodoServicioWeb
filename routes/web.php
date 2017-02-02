@@ -15,8 +15,6 @@
 Route::get('/', 'PagesController@getIndex');
 // Denied access route
 Route::get('denied', 'PagesController@getDenied');
-// Ruta para ver el carrito de compras
-Route::get('carrito', 'PagesController@getCarrito');
 // Search routes
 Route::get('search', 'PagesController@getSearch');
 Route::post('search', 'PagesController@postSearch');
@@ -33,6 +31,11 @@ Route::resource('products', 'ProductController');
 Route::resource('categories', 'CategoryController',['except' => ['create']]);
 // Tags routes
 Route::resource('tags', 'TagController',['except' => ['create']]);
+// ShopingCart routes
+Route::resource('cart', 'ShoppingCartController', ['except' => ['create','show']]);
+Route::get('cart/destroyAll','ShoppingCartController@destroyAll');
 // Authentication routes
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+// Maling list routes
+Route::post('mailing', 'MailingContactController@saveContact');

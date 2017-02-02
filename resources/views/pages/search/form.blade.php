@@ -5,8 +5,7 @@
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#8BC34A; color: white;">
     <div class="container text-center">
-      <h1>Busque entre nuestros productos:</h1>
-      <hr>
+      <h2>Busque entre nuestros productos:</h2>
     </div>
   </div>
 @endsection
@@ -21,7 +20,12 @@
   </center>
   <hr>
 
-  <div class="col-xs-12 col-md-offset-2 col-md-4">
+  <div class="col-md-4">
+    <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
+    <br>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
     <div class="well" style="background-color: #66BB6A; color: white">
       <h3>Ver por palabras claves:</h3>
       <ul>

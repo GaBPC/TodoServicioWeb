@@ -5,8 +5,7 @@
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#448AFF ; color: white;">
     <div class="container text-center">
-      <h1>Nuestros productos.</h1>
-      <hr>
+      <h2>Nuestros productos.</h2>
     </div>
   </div>
 @endsection
@@ -34,14 +33,8 @@
             <strong> ID: </strong>{{ $product->id }}
             <br>
             <hr>
-            <div class="col-xs-12 col-md-offset-2 col-md-4">
+            <div class="col-xs-12 col-md-offset-2 col-md-8">
               <a href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
-            </div>
-            <div class="visible-xs visible-sm">
-              <br><br>
-            </div>
-            <div class="col-xs-12 col-md-4">
-              <a href="#" class="btn btn-success btn-sm btn-block">Agregar al carrito</a>
             </div>
           </div>
         </div>

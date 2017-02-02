@@ -5,13 +5,19 @@
 @section('navbar-extend')
   <div class="jumbotron text-center" style="background-color:#8BC34A ; color: white;">
     <div class="container">
-      <h1>Hemos encontrado esto:</h1>
-      <hr>
+      <h2>Hemos encontrado esto:</h2>
     </div>
   </div>
 @endsection
 
 @section('content')
+
+  <div class="alert alert-danger" role="alert">
+    <center>
+      Si aquí no encuentra lo que buscaba, no dude en solicitar un <a href="{{ url('custom') }}">presupuesto</a> con los productos que quiera.
+    </center>
+  </div>
+
   <div class="col-xs-12 col-md-offset-4 col-md-4">
     <a href="{{ url('search') }}" class="btn btn-success btn-block"><< Volver</a>
   </div>

@@ -40,9 +40,10 @@
         <div class="row">
           <div class="col-xs-12">
             <center>
-              {!! Form::open(array('route' => 'categories.index', 'method' => 'post', 'class' => 'form-inline')) !!}
+              {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
               <div class="form-group">
-                {{ Form::number('cant', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
               </div>
               <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar</button>
               {!! Form::close() !!}
