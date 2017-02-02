@@ -19,6 +19,9 @@
         <li class="{{ Request::is('search') ? "active" : "" }}">
           <a href="{{ url('search') }}"><span class="glyphicon glyphicon-search"></span> Buscar</a>
         </li>
+        <li class="{{ Request::is('cart') ? "active" : "" }}">
+          <a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
+        </li>
         <li class="{{ Request::is('contact') ? "active" : "" }}">
           <a href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span> Contacto</a>
         </li>
@@ -36,15 +39,7 @@
               <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-edit"></span> Registrarse</a></li>
             </ul>
           @else
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Bienvenido {{ Auth::user()->name }}! <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ url('carrito') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
-              <li><a href="{{ url('home') }}"><span class="glyphicon glyphicon-tasks"></span>  Información</a></li>
-              <form id="logout-form" class="navbar-form" action="{{ route('logout') }}" method="POST">
-                <input type="submit" class="btn btn-danger btn-block" value="Cerrar sesión">
-                {{ csrf_field() }}
-              </form>
-            </ul>
+            <li><a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span>  Bienvenido {{ Auth::user()->name }}!</a></li>
           @endif
         </li>
       </ul>
