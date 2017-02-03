@@ -60,7 +60,7 @@
   <div class="row">
     <hr>
     <div class="col-xs-12 col-md-offset-4 col-md-4">
-      <input type="button" class="btn btn-success btn-block" value="Realizar pedido">
+      <a href="{{ url('cart/submit') }}" class="btn btn-success btn-block">Realizar pedido</a>
     </div>
   </div>
 @endsection

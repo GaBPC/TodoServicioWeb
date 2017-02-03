@@ -113,4 +113,11 @@ class ShoppingCartController extends Controller
     Session::flash('errorMessage','El carrito fue vaciado correctamente');
     return redirect()->route('cart.index') ;
   }
+
+  public function submit()
+  {
+    // $user_id = Auth::user()->id;
+    // $items = ShoppingCart::where('user_id',$user_id)->get();
+    dd("Enviar el carrito");
+  }
 }
