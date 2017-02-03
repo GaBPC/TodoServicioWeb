@@ -2,18 +2,11 @@
 
 @section('title','Nuestros productos')
 
-@section('css')
-<style media="screen">
-.input-group{
-  margin-bottom: 10px;
-}
-</style>
-@endsection
-
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#E1F5FE ; color: black;">
     <div class="container text-center">
       <h2>Complete el formulario para solicitar su presupuesto.</h2>
+      (*Si abandona esta página sin enviar los datos, estos no se guardarán)
     </div>
   </div>
 @endsection

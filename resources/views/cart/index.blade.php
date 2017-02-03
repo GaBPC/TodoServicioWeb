@@ -56,4 +56,11 @@
       </table>
     </div>
   </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-xs-12 col-md-offset-4 col-md-4">
+      <input type="button" class="btn btn-success btn-block" value="Realizar pedido">
+    </div>
+  </div>
 @endsection

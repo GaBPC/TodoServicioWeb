@@ -39,7 +39,9 @@
               <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-edit"></span> Registrarse</a></li>
             </ul>
           @else
-            <li><a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span>  Bienvenido {{ Auth::user()->name }}!</a></li>
+            <li class="{{ Request::is('home') ? "active" : "" }}">
+              <a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span>  Bienvenido {{ Auth::user()->name }}!</a>
+            </li>
           @endif
         </li>
       </ul>
