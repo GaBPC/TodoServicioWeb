@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Category;
+use App\ShoppingCart;
 use App\Tag;
 use Auth;
 use Image;
@@ -192,6 +193,11 @@ class ProductController extends Controller
     // Delete the image from the storage
     if($product->image != null){
       Storage::delete($product->image);
+    }
+    // Deletes all rows of the shpping car where the product was present
+    $items = ShoppingCart::where('product_id',$id)->get();
+    foreach ($items as $item) {
+      $item->delete();
     }
     // Delete the product
     $product->delete();
