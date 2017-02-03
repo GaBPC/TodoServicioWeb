@@ -7,7 +7,7 @@ use App\Tag;
 use App\Category;
 use Session;
 use Illuminate\Http\Request;
-use Excel;
+// use Excel;
 use Auth;
 
 class PagesController extends Controller
