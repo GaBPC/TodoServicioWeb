@@ -17,7 +17,7 @@
           </center>
         @endif
         <h1><b>{{ $product->name }}</b></h1>
-        <h4>Precio unitario: ${{ $product->price }}</h4>
+        <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
         @foreach ($product->tags as $tag)
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
         @endforeach

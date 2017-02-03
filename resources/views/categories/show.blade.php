@@ -30,7 +30,7 @@
                     <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
                   </center>
                 @endif
-                <strong>Precio unitario: </strong>${{ $product->price }}
+                <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
                 <br>
                 <strong> ID: </strong>{{ $product->id }}
                 <br>

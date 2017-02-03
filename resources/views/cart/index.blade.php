@@ -30,9 +30,9 @@
                   {{$data[$i]['product']->name}}
                 </a>
               </td>
-              <td class="text-center">${{$data[$i]['product']->price}}</td>
+              <td class="text-center">${{ number_format((float)$data[$i]['product']->price, 2, ',', '') }}</td>
               <td class="text-center">{{$data[$i]['quantity']}}</td>
-              <td class="text-center">${{$data[$i]['product']->price * $data[$i]['quantity']}}</td>
+              <td class="text-center">${{number_format((float)$data[$i]['product']->price * $data[$i]['quantity'], 2, ',', '')}}</td>
               <td class="text-center">
                 {!! Form::open(array('route' => ['cart.destroy', $data[$i]['id']], 'method' => 'delete')) !!}
                 {{ Form::submit('-', array('class' => 'btn btn-danger btn-block')) }}
@@ -47,7 +47,7 @@
             <td></td>
             <td></td>
             <th class="text-center">Total:</th>
-            <td class="text-center">${{$data['total']}}</td>
+            <td class="text-center">${{number_format((float)$data['total'], 2, ',', '')}}</td>
             <td>
               <a href="{{ url('cart/destroyAll') }}" class="btn btn-danger btn-block btn-sm">Vaciar</a>
             </td>
