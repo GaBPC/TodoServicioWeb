@@ -17,7 +17,7 @@
       {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Ingrese el nombre', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
       <br>
       {{ Form::label('price', 'Precio') }}
-      {{ Form::number('price', null, array('class' => 'form-control', 'placeholder' => 'Ingrese el precio', 'required' => '', 'min' => '0')) }}
+      {{ Form::number('price', null, array('class' => 'form-control', 'placeholder' => 'Ingrese el precio', 'required' => '', 'min' => '0', 'step' => '0.01')) }}
       <br>
       {{ Form::label('feature_image', 'Subir imagen') }}
       {{ Form::file('feature_image')}}
