@@ -13,8 +13,8 @@
 
 // Index route
 Route::get('/', 'PagesController@getIndex');
-// Ruta para ver el carrito de compras
-Route::get('carrito', 'PagesController@getCarrito');
+// Denied access route
+Route::get('denied', 'PagesController@getDenied');
 // Search routes
 Route::get('search', 'PagesController@getSearch');
 Route::post('search', 'PagesController@postSearch');
@@ -22,12 +22,22 @@ Route::post('search', 'PagesController@postSearch');
 Route::get('contact', 'PagesController@getContact');
 // Location route
 Route::get('location', 'PagesController@getLocation');
+// Custom routes
+Route::get('custom', 'PagesController@getCustom');
+Route::post('custom', 'PagesController@postCustom');
 // Products routes
 Route::resource('products', 'ProductController');
 // Categories routes
 Route::resource('categories', 'CategoryController',['except' => ['create']]);
 // Tags routes
 Route::resource('tags', 'TagController',['except' => ['create']]);
+// ShopingCart routes
+Route::resource('cart', 'ShoppingCartController', ['except' => ['create','show']]);
+Route::get('cart/destroyAll','ShoppingCartController@destroyAll');
+Route::get('cart/submit','ShoppingCartController@submit');
+
 // Authentication routes
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+// Maling list routes
+Route::post('mailing', 'MailingContactController@saveContact');

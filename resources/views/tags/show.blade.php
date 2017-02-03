@@ -4,13 +4,8 @@
 
 @section('content')
   <div class="row">
-    <div class="col-xs-9">
+    <div class="col-xs-12">
       <h1>{{ $tag->name }} Tag <small>Presente en {{ $tag->products()->count() }} producto(s)</small></h1>
-    </div>
-    <div class="col-xs-3">
-      {!! Form::open(['route' => ['tags.destroy',$tag->id], 'method' => 'DELETE']) !!}
-        {{ Form::submit('Eliminar',['class' => 'btn btn-danger btn-block pull-right', 'style' => 'margin-top: 30px']) }}
-      {!! Form::close() !!}
     </div>
   </div>
   <hr>

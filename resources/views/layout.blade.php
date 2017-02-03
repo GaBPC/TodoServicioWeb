@@ -21,8 +21,7 @@
 
   <!-- Footer -->
   @include('partials._footer')
-
-  <!-- Scripts -->
-  @include('partials._javascript')
 </body>
+<!-- Scripts -->
+@include('partials._javascript')
 </html>

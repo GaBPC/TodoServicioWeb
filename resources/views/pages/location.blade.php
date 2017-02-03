@@ -3,12 +3,9 @@
 @section('title','Unicación')
 
 @section('navbar-extend')
-  <div class="row">
-    <div class="jumbotron" style="background-color:#FFF59D ; color: black;">
-      <div class="container text-center">
-        <h1>Donde encontrarnos.</h1>
-        <hr>
-      </div>
+  <div class="jumbotron" style="background-color:#FFF59D ; color: black;">
+    <div class="container text-center">
+      <h2>Donde encontrarnos.</h2>
     </div>
   </div>
 @endsection

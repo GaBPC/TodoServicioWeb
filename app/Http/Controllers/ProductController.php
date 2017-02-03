@@ -19,7 +19,7 @@ class ProductController extends Controller
 
   public function __construct()
   {
-    $this->middleware('auth', ['except' => ['index','show']]);
+    $this->middleware(['auth','admin'], ['except' => ['index','show']]);
   }
 
   /**
@@ -29,9 +29,9 @@ class ProductController extends Controller
   */
   public function index()
   {
-    // Create a variable and sotre all the products in it from the Database
+    // Create a variable and store all the products in it from the Database
     $products = Product::orderBy('id','desc')->paginate(5);
-
+    // Create a variable and store all the categories in it from the Database
     $categories = Category::all();
     // Return a view and pass in the above variable
     return view('products.index')->withProducts($products)->withCategories($categories);
@@ -70,7 +70,6 @@ class ProductController extends Controller
     $product->name = $request->name;
     $product->price = $request->price;
     $product->category_id = $request->category_id;
-
     // Save the image
     if ($request->hasFile('feature_image')) {
       $image = $request->file('feature_image');
@@ -79,9 +78,7 @@ class ProductController extends Controller
       Image::make($image)->save($location); //->resize(800, 400)
       $product->image = $filename;
     }
-
     $product->save();
-
     if (isset($request->tags)) {
       $product->tags()->sync($request->tags);
     }
@@ -128,11 +125,10 @@ class ProductController extends Controller
     }
     // Find the product in the database and saves as a variable
     $product = Product::find($id);
-
     $jsontags = json_encode($product->tags->pluck('id'));
     // Return the view an pass in the variable
     return view('products.edit')->withProduct($product)->withCategories($listCategories)
-                                ->withTags($listTags)->withJsontags($jsontags);
+    ->withTags($listTags)->withJsontags($jsontags);
   }
 
   /**
@@ -157,7 +153,6 @@ class ProductController extends Controller
     $product->name = $request->input('name');
     $product->price = $request->input('price');
     $product->category_id = $request->input('category_id');
-
     if ($request->hasFile('feature_image')){
       // Save the new imagen
       $image = $request->file('feature_image');
@@ -170,16 +165,13 @@ class ProductController extends Controller
       // Delete the old image
       Storage::delete($oldFilename);
     }
-
     $product->save();
-
     if (isset($request->tags)) {
       $product->tags()->sync($request->tags);
     }
     else {
       $product->tags()->sync(array());
     }
-
     // Set the flash success message
     Session::flash('successMessage','El producto ha sido modificado correctamente');
     // Redirect with flash success message

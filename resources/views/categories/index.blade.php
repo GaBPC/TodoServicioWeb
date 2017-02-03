@@ -13,6 +13,7 @@
             <th>Nombre</th>
             <th>Creada</th>
             <th>Ultima modifiación</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -23,6 +24,13 @@
               <td><a href="{{ route('categories.show',$category->id) }}">{{ $category->category_name }}</a></td>
               <td>{{ date('d/m/Y - H:i',strtotime($category->created_at)) }}</td>
               <td>{{ date('d/m/Y - H:i',strtotime($category->updated_at)) }}</td>
+              <td>
+                <center>
+                  {!! Form::open(['route' => ['categories.destroy',$category->id], 'method' => 'DELETE']) !!}
+                  {{ Form::submit('X',['class' => 'btn btn-danger btn-sm']) }}
+                  {!! Form::close() !!}
+                </center>
+              </td>
             </tr>
           @endforeach
         </tbody>
