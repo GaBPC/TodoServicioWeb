@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Tag;
 use App\Category;
+use App\Order;
 use Session;
 use Illuminate\Http\Request;
 use Excel;
@@ -12,7 +13,6 @@ use Auth;
 
 class PagesController extends Controller
 {
-
   public function __construct()
   {
     $this->middleware('auth', ['only' => ['postCustom','getCustom']]);
@@ -20,11 +20,6 @@ class PagesController extends Controller
 
   public function getIndex(){
     return view('pages.index');
-  }
-
-  public function getCarrito(){
-    // Write a controller for this
-    return view('pages.carrito');
   }
 
   public function getSearch(){
@@ -68,44 +63,55 @@ class PagesController extends Controller
   }
 
   public function postCustom(){
-    // Requests the data from the form
-    $request = request()->all();
-    // Gets the count of items
-    $count =  $request['counter'];
-    // Array to save the data
-    $data = array();
-    // Saves the data to an array
-    for ($i=0; $i <= $count; $i++) {
-      // If the item $i is set
-      if(isset($request['description'.$i]) && $request['quantity'.$i] != null){
-        $data[$i] = array($request['description'.$i], $request['quantity'.$i]);
-      }
-    }
-    // Saves the user's data
-    $data[$count + 1] = array(Auth::user()->name, Auth::user()->email);
+    $file_name = 'p' . time();
     // Maatwebsite excel
-    Excel::create(Auth::user()->email . time(), function($excel) use($data) {
-      // Sets the sheet name and puts the content
-      $excel->sheet('Hoja 1', function($sheet) use($data) {
-        // Sets the font
-        $sheet->setFontFamily('Arial');
-        // Centers the cells
-        $sheet->cells('A1:B1000', function($cells) {
-          $cells->setAlignment('center');
-        });
-        // Sets the title row
-        $sheet->cell('A1', function($cell) {
-          $cell->setValue('Descripción');
-        });
-        $sheet->cell('B1', function($cell) {
-          $cell->setValue('Cantidad');
-        });
-        // Saves the data to the sheet
-        $sheet->fromArray($data);
+    Excel::create($file_name, function($excel) {
+      // Sets the sheet name
+      $excel->sheet('Pedido de compra', function($sheet) {
+        // User who is buying
+        $user = Auth::user();
+        // Adds the user's data
+        $sheet->appendRow(["Usuario:", $user->name]);
+        $sheet->appendRow(["E-mail:", $user->email]);
+        // Adds an empty row
+        $sheet->appendRow([""]);
+        // Adds the titles
+        $sheet->appendRow(["Código","Producto","Cantidad","U. Medida","Precio","% Bonif.","Imp. Bonif","Subtotal"]);
+        // Requests the data from the form
+        $request = request()->all();
+        // Saves the data to an array
+        for ($i=0; $i <= $request['counter']; $i++) {
+          // If the item $i is set
+          if(isset($request['description'.$i]) && $request['quantity'.$i] != null){
+            // Computes the data
+            $cod = "";
+            $name = $request['description'.$i];
+            $quantity = $request['quantity'.$i];
+            $um = "";
+            $price = "";
+            $bonif = "";
+            $impbonif = "";
+            $subtotal = "";
+            // Appends the row with the data
+            $sheet->appendRow([$cod,$name,$quantity, $um, $price,$bonif, $impbonif , $subtotal]);
+          }
+        }
+          // Set auto size for sheet
+          $sheet->setAutoSize(true);
+          // Set the alignment to the first 1000 rows
+          $sheet->cells('A1:H1000', function($cells) {
+            $cells->setAlignment('center');
+            $cells->setValignment('center');
+          });
       });
-    })->store('xls'); // Stores the xls to the server
-    // Sends the xls to the admin's email
-    // TODO
+      // Stores the xls to the server
+    })->store('xls');
+    // Stores the xls data in the database
+    $order = new Order();
+    $order->user_email = Auth::user()->email;
+    $order->file_name = $file_name . '.xls';
+    $order->type = Order::CUSTOM_ID;
+    $order->save();
     // Sets the success flash message
     Session::flash('successMessage','El pedido se ha realizado con exito');
     // Redirects to the custom page

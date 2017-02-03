@@ -40,6 +40,10 @@
                         <br>
                         <a href="{{ route('products.create') }}" class="btn btn-success btn-block">Agregar producto</a>
                       </div>
+                      <div class="col-xs-12 col-md-6">
+                        <br>
+                        <a href="{{ route('orders.index') }}" class="btn btn-warning btn-block">Ordenes</a>
+                      </div>
                     </div>
                   @endif
                   <hr>
