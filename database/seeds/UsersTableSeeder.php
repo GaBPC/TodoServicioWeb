@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
         'name' => 'Admin',
         'email' => 'admin@todoservicio.com',
         'password' => bcrypt('1843518435'),
+        'role' => 1,
       ]);
   }
 }

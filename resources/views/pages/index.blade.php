@@ -9,7 +9,7 @@
       <div class="col-xs-12">
         <br><br>
         <h1>¡Bienvenidos a Todo Servicio!</h1>
-        <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como realizar encargos personalizados.</h3>
+        <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como también realizar encargos personalizados.</h3>
       </div>
     </div>
   </div>
