@@ -15,7 +15,7 @@ class PagesController extends Controller
 
   public function __construct()
   {
-    $this->middleware('auth', ['only' => ['postCustom']]);
+    $this->middleware('auth', ['only' => ['postCustom','getCustom']]);
   }
 
   public function getIndex(){

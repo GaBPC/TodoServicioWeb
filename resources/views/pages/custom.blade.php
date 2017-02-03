@@ -27,7 +27,7 @@
             <input id="description" class="form-control" type="text" placeholder="Ingrese la descripción">
           </td>
           <td class="text-center">
-            <input id="quantity" class="form-control" type="number" value="1" min="1">
+            <input id="quantity" class="form-control" type="number" value="1" min="1" >
           </td>
           <td class="text-center">
             <input @click="addItem" type="button" class="btn btn-success btn-block" value="+">
@@ -35,10 +35,10 @@
         </tr>
         <tr v-for="item in items">
           <td>
-            <input class="form-control" v-model="item.description" v-bind:name="'description' + item.id"/>
+            <input class="form-control" v-model="item.description" v-bind:name="'description' + item.id" required/>
           </td>
           <td>
-            <input class="form-control" v-model="item.quantity" v-bind:name="'quantity' + item.id"/>
+            <input class="form-control" v-model="item.quantity" v-bind:name="'quantity' + item.id" required/>
           </td>
           <td class="text-center">
             <input @click="removeItem" type="button" v-bind:id="item.id" value="-" class="btn btn-danger btn-block">

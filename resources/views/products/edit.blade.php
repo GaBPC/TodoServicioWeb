@@ -14,7 +14,7 @@
       {{ Form::label('name', 'Nombre del producto:')}}
       {{ Form::text('name', null, array('class' => 'form-control')) }}
       {{ Form::label('price', 'Precio del producto:')}}
-      {{ Form::number('price', null, array('class' => 'form-control')) }}
+      {{ Form::number('price', null, array('class' => 'form-control', 'step' => '0.01')) }}
 
       {{ Form::label('feature_image', 'Cambiar imagen') }}
       {{ Form::file('feature_image') }}
