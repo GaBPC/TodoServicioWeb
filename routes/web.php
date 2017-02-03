@@ -41,3 +41,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 // Maling list routes
 Route::post('mailing', 'MailingContactController@saveContact');
+// Orders routes
+Route::resource('orders','OrderController');

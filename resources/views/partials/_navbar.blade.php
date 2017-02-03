@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{{ url('/') }}">
-        <span class="brand-logo">TodoServicio</span><span class="dot-com">.com</span>
+        <span class="brand-logo">TodoServicio</span><span class="dot-com">.com.ar</span>
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
