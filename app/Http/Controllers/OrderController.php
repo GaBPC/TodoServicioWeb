@@ -57,7 +57,7 @@ class OrderController extends Controller
   public function show($id)
   {
     $order = Order::find($id);
-    Excel::load('storage\exports\\' . $order->file_name)->export('xls');
+    Excel::load('storage/exports/' . $order->file_name)->export('xls');
   }
 
   /**
