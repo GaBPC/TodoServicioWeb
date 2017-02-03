@@ -181,7 +181,7 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
     ],
@@ -238,7 +238,7 @@ return [
 
         'Image' => Intervention\Image\Facades\Image::class,
 
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        // 'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ],
 
 ];
