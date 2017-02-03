@@ -92,7 +92,7 @@ class OrderController extends Controller
   public function destroy($id)
   {
     $order = Order::find($id);
-    unlink(storage_path() . '\exports\\' . $order->file_name);
+    unlink(storage_path() . '/exports/' . $order->file_name);
     $order->delete();
     Session::flash('successMessage','El archivo se ha eliminado con exito');
     return redirect()->route('orders.index');
