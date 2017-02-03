@@ -74,7 +74,6 @@ class ProductController extends Controller
       $filename = time() . '.' . $image->getClientOriginalExtension();
       $location = storage_path('images/' . $filename);
       Image::make($image)->save($location); //->resize(800, 400)
-      dd("Llega");
       $product->image = $filename;
     }
     $product->save();
