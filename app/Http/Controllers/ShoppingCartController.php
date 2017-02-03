@@ -47,20 +47,25 @@ class ShoppingCartController extends Controller
   */
   public function store(Request $request)
   {
-    $user_id = Auth::user()->id;
-    $items_cart = ShoppingCart::where('user_id', $user_id)->where('product_id', $request->product_id)->get();
-    if(count($items_cart) > 0){
-      $items_cart[0]->quantity = $items_cart[0]->quantity + $request->quantity;
-      $items_cart[0]->save();
+    if($request->quantity != null){
+      $user_id = Auth::user()->id;
+      $items_cart = ShoppingCart::where('user_id', $user_id)->where('product_id', $request->product_id)->get();
+      if(count($items_cart) > 0){
+        $items_cart[0]->quantity = $items_cart[0]->quantity + $request->quantity;
+        $items_cart[0]->save();
+      }
+      else {
+        $cart_item = new ShoppingCart();
+        $cart_item->user_id = $user_id;
+        $cart_item->product_id = $request->product_id;
+        $cart_item->quantity = $request->quantity;
+        $cart_item->save();
+      }
+      Session::flash('successMessage','El producto ha sido agregado al carrito');
     }
     else {
-      $cart_item = new ShoppingCart();
-      $cart_item->user_id = $user_id;
-      $cart_item->product_id = $request->product_id;
-      $cart_item->quantity = $request->quantity;
-      $cart_item->save();
+      Session::flash('errorMessage','No ha seleccionado una cantidad');
     }
-    Session::flash('successMessage','El producto ha sido agregado al carrito');
     return redirect()->route('products.show', $request->product_id);
   }
 
