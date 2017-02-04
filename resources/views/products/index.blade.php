@@ -13,28 +13,30 @@
 @section('content')
   <div class="col-xs-12 col-md-8">
     @foreach ($products as $product)
-      <div class="panel-group text-center">
+      <div itemscope itemtype="https://schema.org/Product" class="panel-group text-center">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <strong><h3>{{ $product->name }}</h3></strong>
+            <strong itemprop="name"><h3>{{ $product->name }}</h3></strong>
           </div>
-          <div itemscope class="panel-body">
+          <div class="panel-body">
             @if ($product->image != null)
               <center>
                 <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
               </center>
             @else
               <center>
-                <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+                <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
               </center>
             @endif
-            <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-            <br>
-            <strong> ID: </strong>{{ $product->id }}
-            <br>
-            <hr>
+            <div itemprop="description">
+              <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
+              <br>
+              <strong> ID: </strong>{{ $product->id }}
+              <br>
+              <hr>
+            </div>
             <div class="col-xs-12 col-md-offset-2 col-md-8">
-              <a href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
+              <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
             </div>
           </div>
         </div>
