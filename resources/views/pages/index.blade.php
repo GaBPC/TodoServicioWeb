@@ -16,21 +16,21 @@
 @endsection
 
 @section('content')
-  <div class="row">
+  <div itemscope class="row">
     {{-- Products page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">
       <br>
-      <a href="{{ route('products.index') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/products.png')}}" alt="Visite nuestros productos de venta online"></a>
+      <a href="{{ route('products.index') }}"><img itemprop="image" class="img-responsive radius-border" src="{{asset('images/site-resources/products.png')}}" alt="Visite nuestros productos de venta online"></a>
     </div>
     {{-- Personalized page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">
       <br>
-      <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
+      <a href="{{ url('custom') }}"><img itemprop="image" class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
     </div>
     {{-- Location page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">
       <br>
-      <a href="{{ url('location') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/maps.png')}}" alt="Encuentrenos en Mar del Plata"></a>
+      <a href="{{ url('location') }}"><img itemprop="image" class="img-responsive radius-border" src="{{asset('images/site-resources/maps.png')}}" alt="Encuentrenos en Mar del Plata"></a>
     </div>
   </div>
   <hr>

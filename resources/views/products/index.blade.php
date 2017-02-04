@@ -18,10 +18,10 @@
           <div class="panel-heading">
             <strong><h3>{{ $product->name }}</h3></strong>
           </div>
-          <div class="panel-body">
+          <div itemscope class="panel-body">
             @if ($product->image != null)
               <center>
-                <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+                <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
               </center>
             @else
               <center>
