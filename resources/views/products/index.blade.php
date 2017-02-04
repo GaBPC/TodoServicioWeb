@@ -40,18 +40,15 @@
         </div>
       </div>
     @endforeach
-
     <div class="col-xs-12 text-center">
       {!! $products->links() !!}
     </div>
   </div>
-
   {{-- Personalized page link --}}
   <div class="col-xs-12 col-md-4">
-    <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Imagen para personalizados"></a>
+    <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
     <br>
   </div>
-
   <div class="col-xs-12 col-md-4">
     <div class="well" style="background-color: #448AFF; color: white">
       <h3>Ver por categoria:</h3>
@@ -62,6 +59,4 @@
       </ul>
     </div>
   </div>
-
-
 @endsection
