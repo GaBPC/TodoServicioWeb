@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('googlehtml')
+  <meta name="google-site-verification" content="G53srD0kSSZ0n1ZjCnC008jZ0fuNHVcd1oGs5cJ9wtk" />
+@endsection
+
 @section('title','Nuestros productos')
 
 @section('navbar-extend')
