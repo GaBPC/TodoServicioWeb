@@ -19,6 +19,9 @@
       {{ Form::label('price', 'Precio') }}
       {{ Form::number('price', null, array('class' => 'form-control', 'placeholder' => 'Ingrese el precio', 'required' => '', 'min' => '0', 'step' => '0.01')) }}
       <br>
+      {{ Form::label('units', 'Unidades de medida') }}
+      {{ Form::text('units', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la unidad de medida', 'required' => '')) }}
+      <br>
       {{ Form::label('feature_image', 'Subir imagen') }}
       {{ Form::file('feature_image')}}
       <br>

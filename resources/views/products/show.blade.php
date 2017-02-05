@@ -40,17 +40,23 @@
         <div class="row">
           <div class="col-xs-12">
             <center>
+              <h5><b>Agregar al carrito de compras</b></h5>
               {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
-              <div class="form-group">
+              <div class="input-group">
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+                <span title="{{ $product->units }}" class="input-group-addon">
+                  {{ strlen($product->units) <=10 ? $product->units : substr($product->units,0,10) . "..."}}
+                </span>
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-success">+ <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                </div>
               </div>
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar</button>
               {!! Form::close() !!}
             </center>
             <br>
           </div>
-          @if (Auth::check() && Auth::user()->role == 1)
+          @if (Auth::check() && Auth::user()->isAdmin())
             <div class="col-xs-6">
               {!! Html::linkRoute('products.edit', 'Modificar', array($product->id), array('class' => 'btn btn-primary btn-block')) !!}
             </div>

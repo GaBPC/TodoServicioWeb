@@ -60,6 +60,7 @@ class ProductController extends Controller
     $rules = array(
       'name' => 'required|max:255',
       'price' => 'required|numeric|min:0|max:99999999',
+      'units' => 'required|max:255',
       'category_id' => 'required|integer',
       'feature_image' => 'sometimes|image'
     );
@@ -68,13 +69,13 @@ class ProductController extends Controller
     $product = new Product();
     $product->name = $request->name;
     $product->price = $request->price;
+    $product->units = $request->units;
     $product->category_id = $request->category_id;
     // Save the image
     if ($request->hasFile('feature_image')) {
       $image = $request->file('feature_image');
       $filename = time() . '.' . $image->getClientOriginalExtension();
       $location = public_path('images/' . $filename);
-      // dd("$location");
       Image::make($image)->save($location); //->resize(800, 400)
       $product->image = $filename;
     }
@@ -144,6 +145,7 @@ class ProductController extends Controller
     $rules = array(
       'name' => 'required|max:255',
       'price' => 'required|numeric|min:0|max:99999999',
+      'units' => 'required|max:255',
       'category_id' => 'required|integer',
       'feature_image' => 'sometimes|image'
     );
@@ -152,6 +154,7 @@ class ProductController extends Controller
     $product = Product::find($id);
     $product->name = $request->input('name');
     $product->price = $request->input('price');
+    $product->units = $request->input('units');
     $product->category_id = $request->input('category_id');
     if ($request->hasFile('feature_image')){
       // Save the new imagen
