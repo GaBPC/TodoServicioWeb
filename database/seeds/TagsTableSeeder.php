@@ -11,12 +11,12 @@ class TagsTableSeeder extends Seeder
   */
   public function run()
   {
-    $data = array(
+    $names = array(
       "Selladores", "Jardines", "Herramientas", "Caños", "PVC", "Galvanizados",
       "Cocinas", "Baños", "Estufas", "Calefones", "Impermeabilizantes", "Interiors",
       "Exteriores", "Mangueras", "Piletas"
     );
-    foreach ($data as $name) {
+    foreach ($names as $name) {
       DB::table('tags')->insert([
         'name' => $name,
         'created_at' => DB::raw('CURRENT_TIMESTAMP'),
