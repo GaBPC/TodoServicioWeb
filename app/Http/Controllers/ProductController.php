@@ -31,7 +31,7 @@ class ProductController extends Controller
     // Create a variable and store all the products in it from the Database
     $products = Product::orderBy('id','desc')->paginate(5);
     // Create a variable and store all the categories in it from the Database
-    $categories = Category::all();
+    $categories = Category::orderBy('category_name', 'asc')->get();
     // Return a view and pass in the above variable
     return view('products.index')->withProducts($products)->withCategories($categories);
   }

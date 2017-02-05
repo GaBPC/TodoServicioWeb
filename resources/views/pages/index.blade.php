@@ -8,7 +8,7 @@
     <div class="banner-layer banner-text">
       <div class="col-xs-12">
         <br><br>
-        <h1>¡Bienvenidos a Todo Servicio, <small>su ferreteria online</small>!</h1>
+        <h1>¡Bienvenidos a Todo Servicio, <small style="color: white">su ferreteria online</small>!</h1>
         <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como también realizar encargos personalizados.</h3>
       </div>
     </div>

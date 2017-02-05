@@ -4,35 +4,25 @@ use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      DB::table('categories')->insert([
-        'category_name' => 'Categoria básica',
-        'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-        'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
-      ]);
+  /**
+  * Run the database seeds.
+  *
+  * @return void
+  */
+  public function run()
+  {
 
+    $data = array(
+      "Categoria básica", "Sanitarios", "Línea Hogar", "Ferretería", "Gas",
+      "Pinturería", "Repuestos"
+    );
+    foreach ($data as $name) {
       DB::table('categories')->insert([
-        'category_name' => 'Ferretería',
-        'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-        'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
-      ]);
-
-      DB::table('categories')->insert([
-        'category_name' => 'Pinturería',
-        'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-        'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
-      ]);
-
-      DB::table('categories')->insert([
-        'category_name' => 'Electrónica',
+        'category_name' => $name,
         'created_at' => DB::raw('CURRENT_TIMESTAMP'),
         'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
       ]);
     }
+
+  }
 }

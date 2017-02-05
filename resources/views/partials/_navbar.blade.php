@@ -16,8 +16,16 @@
         <li class="{{ Request::is('products') ? "active" : "" }}">
           <a href="{{ route('products.index') }}"><span class="glyphicon glyphicon-align-justify"></span> Productos</a>
         </li>
-        <li class="{{ Request::is('search') ? "active" : "" }}">
-          <a href="{{ url('search') }}"><span class="glyphicon glyphicon-search"></span> Buscar</a>
+        <li>
+          {!! Form::open(array('url' => 'search', 'class' => 'navbar-form', 'method' => 'post', 'role' => 'search')) !!}
+          <div class="input-group">
+            {{ Form::text('tag', null, array('class' => 'form-control', 'placeholder' => 'Busque su producto', 'required' => '', 'maxlength' => '255')) }}
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          </div>
+          {!! Form::close() !!}
         </li>
         <li class="{{ Request::is('cart') ? "active" : "" }}">
           <a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
@@ -28,6 +36,7 @@
         <li class="{{ Request::is('location') ? "active" : "" }}">
           <a href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span> Ubicación</a>
         </li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

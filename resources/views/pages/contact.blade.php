@@ -10,7 +10,7 @@
         <hr>
       </div>
       <div class="col-xs-12">
-        <h3><span class="glyphicon glyphicon-earphone"></span> 0223 155 814863</h3>
+        <h3><span class="glyphicon glyphicon-earphone"></span> 0223 156 810816</h3>
       </div>
       <div class="col-xs-12">
         <h3><span class="glyphicon glyphicon-envelope"></span> faktor2005@yahoo.com.ar</h3>

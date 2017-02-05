@@ -3,7 +3,7 @@
 @section('title','Resultados')
 
 @section('navbar-extend')
-  <div class="jumbotron text-center" style="background-color:#8BC34A ; color: white;">
+  <div class="jumbotron text-center" style="background-color:#00C853 ; color: white;">
     <div class="container">
       <h2>Hemos encontrado esto:</h2>
     </div>
@@ -12,22 +12,17 @@
 
 @section('content')
 
-  <div class="alert alert-danger" role="alert">
-    <center>
-      Si aquí no encuentra lo que buscaba, no dude en solicitar un <a href="{{ url('custom') }}">presupuesto</a> con los productos que quiera.
-    </center>
+  <div class="alert alert-info" role="alert">
+      Si aquí no encuentra lo que buscaba, no dude en solicitar un <a href="{{ url('custom') }}">presupuesto</a> personalizado con los productos que necesita.
   </div>
 
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <a href="{{ url('search') }}" class="btn btn-success btn-block"><< Volver</a>
-  </div>
   <div class="col-xs-12">
     <hr>
   </div>
   {{-- Start of row --}}
   <div class="row">
     <div class="col-xs-12">
-      @foreach ($tag->products as $index => $product)
+      @foreach ($products as $index => $product)
         <div class="col-xs-12 col-md-3">
           <div class="panel-group text-center">
             <div class="panel panel-success">
@@ -68,8 +63,5 @@
   </div>
   <div class="col-xs-12">
     <hr>
-  </div>
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <a href="{{ url('search') }}" class="btn btn-success btn-block"><< Volver</a>
   </div>
 @endsection
