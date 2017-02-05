@@ -51,9 +51,13 @@
       </div>
       <center>
         {!! Form::open(array('url' => 'mailing', 'class' => 'form-inline', 'method' => 'post')) !!}
-        {{ Form::email('email', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese su email', 'required' => '', 'maxlength' => '255')) }}
-        <input type="submit" class="btn btn-info btn-lg" value="Enviar">
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <div class="input-group">
+          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          {{ Form::email('email', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese su email', 'required' => '', 'maxlength' => '255')) }}
+          <div class="input-group-btn">
+            <input type="submit" class="btn btn-info btn-lg" value="Enviar">
+          </div>
+        </div>
         {!! Form::close() !!}
       </center>
     </div>

@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-          <div class="panel-heading">Panel de administrador</div>
+          <div class="panel-heading">Panel de usuario</div>
 
           <div class="panel-body">
             <center>
@@ -17,17 +17,20 @@
                 <li><a href="{{ url('/register') }}">Register</a></li>
               @else
                 <div class="form-group">
-                  <label>Sesión iniciada como:</label> {{ Auth::user()->name }}
-                  <hr>
-                  <label>E-mail:</label> {{ Auth::user()->email }}
-                  <hr>
-                  <label>Registrado desde:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->created_at)) }}
+                  <label>Sesión iniciada como:</label> {{ Auth::user()->name }}.
                   <br>
-                  <label>Ultimo cambio de contraseña:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->updated_at)) }}
-                  @if (Auth::user()->role == 1)
+                  <label>Privilegios:</label> {{ Auth::user()->roleToString() }}.
+                  <hr>
+                  <label>E-mail:</label> {{ Auth::user()->email }}.
+                  <hr>
+                  <label>Registrado desde:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->created_at)) }}.
+                  <br>
+                  <label>Ultimo cambio de contraseña:</label> {{ date('d/m/Y - H:i',strtotime(Auth::user()->updated_at)) }}.
+                  {{-- @if (Auth::user()->role == 1) --}}
+                  @if (Auth::user()->isAdmin())
                     <hr>
                     <div class="row">
-                      <h4>¿Qué desea administrar?:</h4>
+                      <h4>Opciones de administrador:</h4>
                       <div class="col-xs-12 col-md-6">
                         <br>
                         <a href="{{ route('tags.index') }}" class="btn btn-primary btn-block">Palabras claves</a>

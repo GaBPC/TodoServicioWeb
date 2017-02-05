@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ $tag->name }} Tag <small>Presente en {{ $tag->products()->count() }} producto(s)</small></h1>
+      <h1>{{ $tag->name }} <small>Presente en {{ $tag->products()->count() }} producto(s)</small></h1>
     </div>
   </div>
   <hr>

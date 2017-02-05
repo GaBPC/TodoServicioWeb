@@ -19,11 +19,11 @@
         <li>
           {!! Form::open(array('url' => 'search', 'class' => 'navbar-form', 'method' => 'post', 'role' => 'search')) !!}
           <div class="input-group">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
             {{ Form::text('tag', null, array('class' => 'form-control', 'placeholder' => 'Busque su producto', 'required' => '', 'maxlength' => '255')) }}
             <div class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           </div>
           {!! Form::close() !!}
         </li>
