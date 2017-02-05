@@ -18,6 +18,11 @@ class PagesController extends Controller
     $this->middleware('auth', ['only' => ['postCustom','getCustom']]);
   }
 
+  public function getCookies()
+  {
+    return view('pages.cookies');
+  }
+
   public function getIndex(){
     return view('pages.index');
   }
@@ -49,11 +54,11 @@ class PagesController extends Controller
         }
       }
       if(count($data) <= 0){
-        Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas.');
+        Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas. Le recomendamos ingresar las palabras en singular.');
       }
     }
     else {
-      Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas.');
+      Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas. Le recomendamos ingresar las palabras en singular.');
     }
     return view('pages.search.result')->withProducts($data);
   }

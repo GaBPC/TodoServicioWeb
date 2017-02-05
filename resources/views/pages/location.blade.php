@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title','Unicación')
+@section('title','Ubicación')
 
 @section('navbar-extend')
   <div class="jumbotron" style="background-color:#FFF59D ; color: black;">

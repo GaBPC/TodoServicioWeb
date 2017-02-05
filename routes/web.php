@@ -11,6 +11,8 @@
 |
 */
 
+//Cookies route
+Route::get('cookies', 'PagesController@getCookies');
 // Index route
 Route::get('/', 'PagesController@getIndex');
 // Denied access route
