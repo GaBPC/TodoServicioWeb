@@ -52,7 +52,7 @@
           </div>
         </div>
         {{-- For md screen: if 4 items have already been printed, closes the row and open a new one --}}
-        @if (($index + 1) % 4 == 0)
+        @if (($loop->index + 1) % 4 == 0)
         </div>
       </div>
       <div class="row">
