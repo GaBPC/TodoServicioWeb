@@ -30,10 +30,10 @@
         <a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
       </li>
       <li class="{{ Request::is('contact') ? "active" : "" }}">
-        <a href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span> Contacto</a>
+        <a href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span></a>
       </li>
       <li class="{{ Request::is('location') ? "active" : "" }}">
-        <a href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span> Ubicación</a>
+        <a href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span></a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
