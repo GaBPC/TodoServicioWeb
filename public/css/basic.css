@@ -21,23 +21,16 @@ footer{
   margin-top: 20px;
 }
 
-.my-footer-header{
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  background-color: #E0E0E0;
-  color: black;
-}
-/*
-.my-footer-body{
-  display: none;
-  background-color: #90CAF9;
+footer small{
   color: white;
 }
 
-.my-footer-header:hover + .my-footer-body{
-  display: block;
-  height: auto;
-}*/
+.my-footer-header{
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: #01579B;
+  color: white;
+}
 
 .img-index {
     width:  800px;

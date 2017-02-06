@@ -31,7 +31,7 @@
                 </a>
               </td>
               <td class="text-center">${{ number_format((float)$data[$i]['product']->price, 2, ',', '') }}</td>
-              <td class="text-center">{{$data[$i]['quantity']}}</td>
+              <td class="text-center">{{$data[$i]['quantity']}} {{ $data[$i]['product']->units }}</td>
               <td class="text-center">${{number_format((float)$data[$i]['product']->price * $data[$i]['quantity'], 2, ',', '')}}</td>
               <td class="text-center">
                 {!! Form::open(array('route' => ['cart.destroy', $data[$i]['id']], 'method' => 'delete')) !!}

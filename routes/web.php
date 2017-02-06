@@ -11,12 +11,13 @@
 |
 */
 
+//Cookies route
+Route::get('cookies', 'PagesController@getCookies');
 // Index route
 Route::get('/', 'PagesController@getIndex');
 // Denied access route
 Route::get('denied', 'PagesController@getDenied');
 // Search routes
-Route::get('search', 'PagesController@getSearch');
 Route::post('search', 'PagesController@postSearch');
 // Contact route
 Route::get('contact', 'PagesController@getContact');

@@ -8,7 +8,7 @@
     <div class="banner-layer banner-text">
       <div class="col-xs-12">
         <br><br>
-        <h1>¡Bienvenidos a Todo Servicio!</h1>
+        <h1>¡Bienvenidos a Todo Servicio, <small style="color: white">su ferretería online</small>!</h1>
         <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como también realizar encargos personalizados.</h3>
       </div>
     </div>
@@ -51,9 +51,13 @@
       </div>
       <center>
         {!! Form::open(array('url' => 'mailing', 'class' => 'form-inline', 'method' => 'post')) !!}
-        {{ Form::email('email', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese su email', 'required' => '', 'maxlength' => '255')) }}
-        <input type="submit" class="btn btn-info btn-lg" value="Enviar">
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <div class="input-group">
+          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          {{ Form::email('email', null, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese su email', 'required' => '', 'maxlength' => '255')) }}
+          <div class="input-group-btn">
+            <input type="submit" class="btn btn-info btn-lg" value="Enviar">
+          </div>
+        </div>
         {!! Form::close() !!}
       </center>
     </div>

@@ -31,4 +31,20 @@ class User extends Authenticatable
     {
       return ($this->role == 1);
     }
+
+    public function roleToString(){
+      $ret = "";
+      switch ($this->role) {
+        case 0:
+          $ret = "Usuario básico";
+          break;
+        case 1:
+          $ret = "Administrador";
+          break;
+        default:
+          $ret = "Sin definir";
+          break;
+      }
+      return $ret;
+    }
 }

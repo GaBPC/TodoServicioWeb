@@ -18,32 +18,49 @@ class PagesController extends Controller
     $this->middleware('auth', ['only' => ['postCustom','getCustom']]);
   }
 
+  public function getCookies()
+  {
+    return view('pages.cookies');
+  }
+
   public function getIndex(){
     return view('pages.index');
   }
 
-  public function getSearch(){
-    $tags = Tag::orderBy('name','asc')->paginate(10);;
-    $categories = Category::orderBy('category_name','asc')->get();
-    return view('pages.search.form')->withTags($tags)->withCategories($categories);
-  }
-
   public function postSearch(){
+    $data = array();
     $request = request()->only('tag');
     if($request['tag'] != null){
-      $tag_request = $request['tag'];
-      $tag = Tag::where('name',$tag_request)->first();
-      if($tag != null && count($tag->products) > 0){
-        // Return the view with the tag because its no posible to pass $tag->products without iterating over it
-        return view('pages.search.result')->withTag($tag);
+      $words = explode(" ", $request['tag']);
+      foreach ($words as $word) {
+        $word = strtoupper($word);
+        $tags = Tag::where('name','like', '%' . $word .'%')->get();
+        foreach ($tags as $tag) {
+          $products = $tag->products;
+          foreach ($products as $product) {
+            if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+          }
+        }
+        $tags = Category::where('category_name','like', '%' . $word .'%')->get();
+        foreach ($tags as $tag) {
+          $products = $tag->products;
+          foreach ($products as $product) {
+            if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+          }
+        }
+        $products = Product::where('name','like','%' . $word . '%')->get();
+        foreach ($products as $product) {
+          if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+        }
       }
-      else {
-        Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas, pero no dude en solicitar un presupuesto en nuestra sección de pedidos personalizados.');
-        return redirect()->to('search');
+      if(count($data) <= 0){
+        Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas. Le recomendamos ingresar las palabras en singular.');
       }
     }
-    Session::flash('errorMessage','No se han encontrado coincidencias con las palabras ingresadas, pero no dude en solicitar un presupuesto en nuestra sección de pedidos personalizados.');
-    return redirect()->to('search');
+    else {
+      Session::flash('errorMessage','Lamentablemente no se han encontrado coincidencias con las palabras ingresadas. Le recomendamos ingresar las palabras en singular.');
+    }
+    return view('pages.search.result')->withProducts($data);
   }
 
   public function getContact()  {
@@ -96,13 +113,13 @@ class PagesController extends Controller
             $sheet->appendRow([$cod,$name,$quantity, $um, $price,$bonif, $impbonif , $subtotal]);
           }
         }
-          // Set auto size for sheet
-          $sheet->setAutoSize(true);
-          // Set the alignment to the first 1000 rows
-          $sheet->cells('A1:H1000', function($cells) {
-            $cells->setAlignment('center');
-            $cells->setValignment('center');
-          });
+        // Set auto size for sheet
+        $sheet->setAutoSize(true);
+        // Set the alignment to the first 1000 rows
+        $sheet->cells('A1:H1000', function($cells) {
+          $cells->setAlignment('center');
+          $cells->setValignment('center');
+        });
       });
       // Stores the xls to the server
     })->store('xls');

@@ -5,18 +5,18 @@
 @section('content')
   <div class="row">
     {{-- Principal data --}}
-    <div class="col-xs-12 col-md-8">
+    <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-8">
       <center>
         @if ($product->image != null)
           <center>
-            <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+            <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
           </center>
         @else
           <center>
-            <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+            <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
           </center>
         @endif
-        <h1><b>{{ $product->name }}</b></h1>
+        <h1 itemprop="name"><b>{{ $product->name }}</b></h1>
         <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
         @foreach ($product->tags as $tag)
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
@@ -26,7 +26,7 @@
     </div>
     {{-- Sidebar --}}
     <div class="col-xs-12 col-md-4">
-      <div class="well">
+      <div itemprop="description" class="well">
         <center><label>Información extra</label></center>
         <dl class="dl-horizontal">
           <dt>Categoría:</dt>
@@ -40,17 +40,23 @@
         <div class="row">
           <div class="col-xs-12">
             <center>
+              <h5><b>Agregar al carrito de compras</b></h5>
               {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
-              <div class="form-group">
+              <div class="input-group">
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+                <span title="{{ $product->units }}" class="input-group-addon">
+                  {{ strlen($product->units) <=10 ? $product->units : substr($product->units,0,10) . "..."}}
+                </span>
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-success">+ <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                </div>
               </div>
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar</button>
               {!! Form::close() !!}
             </center>
             <br>
           </div>
-          @if (Auth::check() && Auth::user()->role == 1)
+          @if (Auth::check() && Auth::user()->isAdmin())
             <div class="col-xs-6">
               {!! Html::linkRoute('products.edit', 'Modificar', array($product->id), array('class' => 'btn btn-primary btn-block')) !!}
             </div>
