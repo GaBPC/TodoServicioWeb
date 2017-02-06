@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     {{-- Principal data --}}
-    <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-8">
+    <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-8" style="margin-bottom: 20px;">
       <center>
         @if ($product->image != null)
           <center>
@@ -22,7 +22,6 @@
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
         @endforeach
       </center>
-      <hr>
     </div>
     {{-- Sidebar --}}
     <div class="col-xs-12 col-md-4">
@@ -31,7 +30,7 @@
         <dl class="dl-horizontal">
           <dt>Categoría:</dt>
           <dd>{{ $product->category->category_name }}</dd>
-          <dt>Creado:</dt>
+          <dt>Creación:</dt>
           <dd>{{ date('d/m/Y - H:i',strtotime($product->created_at)) }}</dd>
           <dt>Ultima modificación:</dt>
           <dd>{{ date('d/m/Y - H:i',strtotime($product->updated_at)) }}</dd>
@@ -68,7 +67,7 @@
           @endif
           <div class="col-xs-12">
             <br>
-            {!! Html::linkRoute('products.index', 'Ir al indice', array($product->id), array('class' => 'btn btn-default btn-block')) !!}
+            {!! Html::linkRoute('products.index', 'Ir al índice', array($product->id), array('class' => 'btn btn-default btn-block')) !!}
           </div>
         </div>
       </div>

@@ -24,7 +24,23 @@ class PagesController extends Controller
   }
 
   public function getIndex(){
-    return view('pages.index');
+    $dir = public_path('images/site-resources/carousel');
+    $files = scandir($dir);
+    for ($i=0; $i < count($files); $i++) {
+      if(strpos($files[$i], "carousel") === false){
+        unset($files[$i]);
+      }
+    }
+
+    $names = array();
+    $i = 0;
+
+    foreach ($files as $file) {
+      $names[$i] = $file;
+      $i++;
+    }
+
+    return view('pages.index')->withImages_names($names);
   }
 
   public function postSearch(){
