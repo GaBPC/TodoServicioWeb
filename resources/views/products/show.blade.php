@@ -5,18 +5,18 @@
 @section('content')
   <div class="row">
     {{-- Principal data --}}
-    <div class="col-xs-12 col-md-8">
+    <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-8">
       <center>
         @if ($product->image != null)
           <center>
-            <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+            <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
           </center>
         @else
           <center>
-            <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+            <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
           </center>
         @endif
-        <h1><b>{{ $product->name }}</b></h1>
+        <h1 itemprop="name"><b>{{ $product->name }}</b></h1>
         <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
         @foreach ($product->tags as $tag)
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
@@ -26,7 +26,7 @@
     </div>
     {{-- Sidebar --}}
     <div class="col-xs-12 col-md-4">
-      <div class="well">
+      <div itemprop="description" class="well">
         <center><label>Información extra</label></center>
         <dl class="dl-horizontal">
           <dt>Categoría:</dt>

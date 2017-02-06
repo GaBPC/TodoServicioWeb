@@ -23,29 +23,32 @@
   <div class="row">
     <div class="col-xs-12">
       @foreach ($products as $index => $product)
-        <div class="col-xs-12 col-md-3">
+        <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-3">
           <div class="panel-group text-center">
             <div class="panel panel-success">
               <div class="panel-heading">
-                <strong><h3>  {{ strlen($product->name) <= 15 ? $product->name : substr($product->name,0,15) . "..."}}</h3></strong>
+                <strong itemprop="name"><h3>  {{ strlen($product->name) <= 15 ? $product->name : substr($product->name,0,15) . "..."}}</h3></strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)
                   <center>
-                    <img class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+                    <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
                   </center>
                 @else
                   <center>
-                    <img class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+                    <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
                   </center>
                 @endif
-                <strong>Precio unitario: </strong>${{ $product->price }}
-                <br>
-                <strong> ID: </strong>{{ $product->id }}
-                <br>
-                <hr>
+                <div itemprop="description">
+                  <hr>
+                  <strong>Precio unitario: </strong>${{ $product->price }}
+                  <br>
+                  <strong> ID: </strong>{{ $product->id }}
+                  <br>
+                  <hr>
+                </div>
                 <div class="col-xs-12">
-                  <a href="{{route('products.show', $product->id)}}" class="btn btn-primary btn-sm btn-block">Más información</a>
+                  <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-primary btn-sm btn-block">Más información</a>
                 </div>
               </div>
             </div>
