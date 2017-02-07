@@ -20,7 +20,7 @@
   <div class="col-xs-12 col-md-3">
     <div class="well" style="background-color: #448AFF; color: white" id="panel">
       <div class=" text-center">
-        <span @click="alternate" class="btn"><h3 style="color: white" v-text="text"></h3></span>
+        <span @click="alternate" class="btn"><h4 style="color: white" v-text="text"></h4></span>
         <hr>
       </div>
       <div v-bind:style="'display:' + display">

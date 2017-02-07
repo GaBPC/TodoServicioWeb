@@ -27,7 +27,7 @@
           <div class="panel-group text-center">
             <div class="panel panel-success">
               <div class="panel-heading">
-                <strong itemprop="name"><h3>  {{ strlen($product->name) <= 15 ? $product->name : substr($product->name,0,15) . "..."}}</h3></strong>
+                <strong itemprop="name"><h5>{{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}</h5></strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)

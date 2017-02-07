@@ -3,19 +3,20 @@
 @section('title','Inicio')
 
 @section('navbar-extend')
-    <div class="banner">
-      <div class="banner-layer banner-text">
-        <div class="col-xs-12">
-          <br><br>
-          <h1>¡Bienvenidos a Todo Servicio!</h1>
-          <h1>Su ferretería online</h1>
-          {{-- <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como también realizar encargos personalizados.</h3> --}}
-        </div>
+  <div class="banner">
+    <div class="banner-layer banner-text">
+      <div class="col-xs-12">
+        <br><br>
+        <h1>¡Bienvenidos a Todo Servicio!</h1>
+        <h1>Su ferretería online</h1>
+        {{-- <h3>En esta página usted podrá encontrar nuestras ultimas ofertas, asi como también realizar encargos personalizados.</h3> --}}
       </div>
     </div>
+  </div>
 @endsection
 
 @section('content')
+  <hr>
   <div class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10">
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -45,7 +46,7 @@
       </div>
     </div>
   </div>
-
+  <hr>
   <div class="row">
     {{-- Products page link --}}
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-4">

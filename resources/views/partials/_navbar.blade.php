@@ -5,15 +5,15 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{ url('/') }}">
-      <span class="brand-logo">TodoServicio</span><span class="dot-com">.com.ar</span>
+    <a title="Inicio" class="navbar-brand" href="{{ url('/') }}">
+      <span class="brand-logo">TodoServicio</span>
     </a>
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li class="divider-vertical hidden-xs hidden-sm"></li>
+      {{-- <li class="divider-vertical hidden-xs hidden-sm"></li> --}}
       <li class="{{ Request::is('products') ? "active" : "" }}">
-        <a href="{{ route('products.index') }}"><span class="glyphicon glyphicon-align-justify"></span> Productos</a>
+        <a title="Nuestros productos" href="{{ route('products.index') }}"><span class="glyphicon glyphicon-align-justify"></span> Productos</a>
       </li>
       <li>
         {!! Form::open(array('url' => 'search', 'class' => 'navbar-form', 'method' => 'post', 'role' => 'search')) !!}
@@ -27,13 +27,15 @@
         {!! Form::close() !!}
       </li>
       <li class="{{ Request::is('cart') ? "active" : "" }}">
-        <a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
+        <a title="Ver el carrito de compras" href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
       </li>
       <li class="{{ Request::is('contact') ? "active" : "" }}">
-        <a href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span></a>
+        <a title="Ver nuestras formas de contacto" class="visible-sm visible-md visible-lg" href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span></a>
+        <a title="Ver nuestras formas de contacto" class="visible-xs" href="{{ url('contact') }}"><span class="glyphicon glyphicon-earphone"></span> Contacto</a>
       </li>
       <li class="{{ Request::is('location') ? "active" : "" }}">
-        <a href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span></a>
+        <a title="Ver donde encontrarnos" class="visible-sm visible-md visible-lg" href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span></a>
+        <a title="Ver donde encontrarnos" class="visible-xs" href="{{ url('location') }}"><span class="glyphicon glyphicon-map-marker"></span> Ubicación</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" style="margin-right: 5px;">
@@ -47,7 +49,7 @@
           </ul>
         </li>
       @else
-        <li class="{{ Request::is('home') ? "active" : "" }}">
+        <li title="Opciones de la cuenta" class="{{ Request::is('home') ? "active" : "" }}">
           <a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span>  Bienvenido {{ Auth::user()->name }}!</a>
         </li>
       @endif
