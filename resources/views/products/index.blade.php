@@ -16,72 +16,82 @@
 
 @section('content')
   <div class="row">
-
-  <div class="col-xs-12 col-md-3">
-    <div class="well" style="background-color: #448AFF; color: white" id="panel">
-      <div class=" text-center">
-        <span @click="alternate" class="btn"><h4 style="color: white" v-text="text"></h4></span>
-        <hr>
-      </div>
-      <div v-bind:style="'display:' + display">
-        <ul>
-          @foreach ($categories as $category)
-            <li><h4><a href="{{ route('categories.show',$category->id) }}" style="color: white">{{$category->category_name}}</a></h4></li>
-          @endforeach
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-md-5">
-    @foreach ($products as $product)
-      <div itemscope itemtype="https://schema.org/Product" class="panel-group text-center">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <strong itemprop="name"><h3>{{ $product->name }}
-            @if ($product->isInPromo())
-              <i class="glyphicon glyphicon-star"></i>
-            @endif
-            </h3></strong>
-          </div>
-          <div class="panel-body">
-            @if ($product->image != null)
-              <center>
-                <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
-              </center>
-            @else
-              <center>
-                <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
-              </center>
-            @endif
-            <hr>
-            <div itemprop="description">
-              <p>{{ $product->description }}</p>
-              @if ($product->isInPromo())
-                <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                <br>
-              @endif
-              <strong> ID: </strong>{{ $product->id }}
-              <br>
-              <hr>
-            </div>
-            <div class="col-xs-12 col-md-offset-2 col-md-8">
-              <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
-            </div>
-          </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="well" style="background-color: #448AFF; color: white" id="panel">
+        <div class=" text-center">
+          <span @click="alternate" class="btn"><h4 style="color: white" v-text="text"></h4></span>
+          <hr>
+        </div>
+        <div v-bind:style="'display:' + display">
+          <ul>
+            @foreach ($categories as $category)
+              <li><h4><a href="{{ route('categories.show',$category->id) }}" style="color: white">{{$category->category_name}}</a></h4></li>
+            @endforeach
+          </ul>
         </div>
       </div>
-    @endforeach
-    <div class="col-xs-12 text-center">
-      {!! $products->links() !!}
+      {{-- Personalized page link --}}
+      <center>
+        <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
+        <br>
+      </center>
+    </div>
+
+    <div class="col-xs-12 col-md-8">
+      <div class="row">
+        @foreach ($products as $product)
+          <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-6 panel-group text-center">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <strong itemprop="name"><h3>{{ $product->name }}
+                  @if ($product->isInPromo())
+                    <i class="glyphicon glyphicon-star"></i>
+                  @endif
+                </h3></strong>
+              </div>
+              <div class="panel-body">
+                @if ($product->image != null)
+                  <center>
+                    <img itemprop="image" class="img-responsive" src="{{asset('images/' . $product->image)}}" alt="Imagen para {{ $product->name }}">
+                  </center>
+                @else
+                  <center>
+                    <img itemprop="image" class="img-responsive" src="{{asset('images/site-resources/noimage.png')}}" alt="Imagen no encontrada">
+                  </center>
+                @endif
+                <hr>
+                <div itemprop="description">
+                  <p>{{ $product->description }}</p>
+                  @if ($product->isInPromo())
+                    <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
+                    <br>
+                  @endif
+                  <strong> ID: </strong>{{ $product->id }}
+                  <br>
+                  <hr>
+                </div>
+                <div class="col-xs-12 col-md-offset-2 col-md-8">
+                  <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          @if (($loop->index + 1) % 2 == 0)
+          </div>
+          <div class="row">
+          @endif
+        @endforeach
+      </div>
     </div>
   </div>
-  {{-- Personalized page link --}}
-  <div class="col-xs-12 col-md-4">
-    <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
-    <br>
-  </div>
-</div>
 
+  <div class="row">
+    <div class="col-xs-12">
+      <center>
+        {!! $products->links() !!}
+      </center>
+    </div>
+  </div>
 @endsection
 
 @section('js')
