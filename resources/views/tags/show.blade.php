@@ -18,7 +18,14 @@
           <div class="panel-group text-center">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <strong itemprop="name"><h5>{{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}</h5></strong>
+                <strong itemprop="name">
+                  <h5>
+                    {{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}
+                    @if ($product->isInPromo())
+                      <i class="glyphicon glyphicon-star"></i>
+                    @endif
+                  </h5>
+                </strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)
@@ -32,8 +39,11 @@
                 @endif
                 <div itemprop="description">
                   <hr>
-                  <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                  <br>
+                  <p>{{ $product->description }}</p>
+                  @if ($product->isInPromo())
+                    <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
+                    <br>
+                  @endif
                   <strong> ID: </strong>{{ $product->id }}
                   <br>
                   <hr>

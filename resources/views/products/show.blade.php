@@ -17,7 +17,10 @@
           </center>
         @endif
         <h1 itemprop="name"><b>{{ $product->name }}</b></h1>
-        <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
+        <p>{{ $product->description }}</p>
+        @if ($product->isInPromo())
+          <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
+        @endif
         @foreach ($product->tags as $tag)
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
         @endforeach

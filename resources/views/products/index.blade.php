@@ -37,7 +37,11 @@
       <div itemscope itemtype="https://schema.org/Product" class="panel-group text-center">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <strong itemprop="name"><h3>{{ $product->name }}</h3></strong>
+            <strong itemprop="name"><h3>{{ $product->name }}
+            @if ($product->isInPromo())
+              <i class="glyphicon glyphicon-star"></i>
+            @endif
+            </h3></strong>
           </div>
           <div class="panel-body">
             @if ($product->image != null)
@@ -51,8 +55,11 @@
             @endif
             <hr>
             <div itemprop="description">
-              <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-              <br>
+              <p>{{ $product->description }}</p>
+              @if ($product->isInPromo())
+                <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
+                <br>
+              @endif
               <strong> ID: </strong>{{ $product->id }}
               <br>
               <hr>

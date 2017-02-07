@@ -28,6 +28,7 @@ Route::get('custom', 'PagesController@getCustom');
 Route::post('custom', 'PagesController@postCustom');
 // Products routes
 Route::resource('products', 'ProductController');
+Route::get('promo', 'ProductController@promo');
 // Categories routes
 Route::resource('categories', 'CategoryController',['except' => ['create']]);
 // Tags routes
