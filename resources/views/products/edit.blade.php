@@ -17,6 +17,13 @@
       {{ Form::label('price', 'Precio del producto:')}}
       {{ Form::number('price', null, array('class' => 'form-control', 'step' => '0.01')) }}
 
+      {{ Form::label('description', 'Descripción:')}}
+      {{ Form::textarea('description', null, array('class' => 'form-control')) }}
+
+      {{ Form::label('promo', 'Agregar a promociones: ') }}
+      {{ Form::checkbox('promo') }}
+      <br>
+
       {{ Form::label('units', 'Unidades de medida del producto:')}}
       {{ Form::text('units', null, array('class' => 'form-control', 'required' => '')) }}
 

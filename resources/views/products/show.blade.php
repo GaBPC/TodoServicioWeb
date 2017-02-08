@@ -17,7 +17,10 @@
           </center>
         @endif
         <h1 itemprop="name"><b>{{ $product->name }}</b></h1>
-        <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
+        <p>{{ $product->description }}</p>
+        @if ($product->isInPromo())
+          <h4>Precio unitario: ${{ number_format((float)$product->price, 2, ',', '')  }}</h4>
+        @endif
         @foreach ($product->tags as $tag)
           <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
         @endforeach
@@ -39,19 +42,35 @@
         <div class="row">
           <div class="col-xs-12">
             <center>
-              <h5><b>Agregar al carrito de compras</b></h5>
-              {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
-              <div class="input-group">
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
-                <span title="{{ $product->units }}" class="input-group-addon">
-                  {{ strlen($product->units) <=10 ? $product->units : substr($product->units,0,10) . "..."}}
-                </span>
-                <div class="input-group-btn">
-                  <button type="submit" class="btn btn-success">+ <span class="glyphicon glyphicon-shopping-cart"></span></button>
+              @if ($product->isInPromo())
+                <h5><b>¡Comprar!</b></h5>
+                {!! Form::open(array('route' => 'buy.store', 'method' => 'post', 'class' => 'form-inline')) !!}
+                <div class="input-group">
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+                  <span title="{{ $product->units }}" class="input-group-addon">
+                    {{ strlen($product->units) <=10 ? $product->units : substr($product->units,0,10) . "..."}}
+                  </span>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-usd"></span></button>
+                  </div>
                 </div>
-              </div>
-              {!! Form::close() !!}
+                {!! Form::close() !!}
+              @else
+                <h5><b>Agregar al presupuesto</b></h5>
+                {!! Form::open(array('route' => 'budget.store', 'method' => 'post', 'class' => 'form-inline')) !!}
+                <div class="input-group">
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
+                  <span title="{{ $product->units }}" class="input-group-addon">
+                    {{ strlen($product->units) <=10 ? $product->units : substr($product->units,0,10) . "..."}}
+                  </span>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-success">+ <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                  </div>
+                </div>
+                {!! Form::close() !!}
+              @endif
             </center>
             <br>
           </div>

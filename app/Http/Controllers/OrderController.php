@@ -22,30 +22,9 @@ class OrderController extends Controller
   */
   public function index()
   {
-    $custom_items = Order::where('type', Order::CUSTOM_ID)->get();
-    $cart_items = Order::where('type', Order::CART_ID)->get();
+    $custom_items = Order::where('type', Order::BUY_ID)->get();
+    $cart_items = Order::where('type', Order::BUDGET_ID)->get();
     return view('orders.index')->withCustom_items($custom_items)->withCart_items($cart_items);
-  }
-
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    //
-  }
-
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-    //
   }
 
   /**
@@ -58,29 +37,6 @@ class OrderController extends Controller
   {
     $order = Order::find($id);
     Excel::load('storage/exports/' . $order->file_name)->export('xls');
-  }
-
-  /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function edit($id)
-  {
-    //
-  }
-
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function update(Request $request, $id)
-  {
-    //
   }
 
   /**

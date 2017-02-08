@@ -61,7 +61,13 @@ class CategoryController extends Controller
   public function show($id)
   {
     $category = Category::find($id);
-    return view('categories.show')->withCategory($category);
+    $products_array = array();
+    foreach ($category->products as $product) {
+      if (!$product->isInPromo()) {
+        array_push($products_array, $product);
+      }
+    }
+    return view('categories.show')->withCategory($category)->withProducts($products_array);
   }
 
   /**

@@ -29,11 +29,17 @@ class ProductController extends Controller
   public function index()
   {
     // Create a variable and store all the products in it from the Database
-    $products = Product::orderBy('id','desc')->paginate(5);
+    $products = Product::where('promo', false)->orderBy('id','desc')->paginate(5);
     // Create a variable and store all the categories in it from the Database
     $categories = Category::orderBy('category_name', 'asc')->get();
     // Return a view and pass in the above variable
     return view('products.index')->withProducts($products)->withCategories($categories);
+  }
+
+  public function promo()
+  {
+    $products = Product::where('promo', true)->get();
+    return view('products.promo')->withProducts($products);
   }
 
   /**
@@ -60,8 +66,10 @@ class ProductController extends Controller
     $rules = array(
       'name' => 'required|max:255',
       'price' => 'required|numeric|min:0|max:99999999',
+      'description' => 'nullable|string',
       'units' => 'required|max:255',
       'category_id' => 'required|integer',
+      'promo' => 'boolean',
       'feature_image' => 'sometimes|image'
     );
     $this->validate($request, $rules);
@@ -69,8 +77,10 @@ class ProductController extends Controller
     $product = new Product();
     $product->name = $request->name;
     $product->price = $request->price;
+    $product->description = $request->description;
     $product->units = $request->units;
     $product->category_id = $request->category_id;
+    $product->promo = (is_null($request->promo)) ? false : true;
     // Save the image
     if ($request->hasFile('feature_image')) {
       $image = $request->file('feature_image');
@@ -145,8 +155,10 @@ class ProductController extends Controller
     $rules = array(
       'name' => 'required|max:255',
       'price' => 'required|numeric|min:0|max:99999999',
+      'description' => 'nullable|string',
       'units' => 'required|max:255',
       'category_id' => 'required|integer',
+      'promo' => 'boolean',
       'feature_image' => 'sometimes|image'
     );
     $this->validate($request, $rules);
@@ -154,8 +166,10 @@ class ProductController extends Controller
     $product = Product::find($id);
     $product->name = $request->input('name');
     $product->price = $request->input('price');
+    $product->description = $request->input('description');
     $product->units = $request->input('units');
     $product->category_id = $request->input('category_id');
+    $product->promo = (is_null($request->input('promo'))) ? false : true;
     if ($request->hasFile('feature_image')){
       // Save the new imagen
       $image = $request->file('feature_image');
@@ -209,4 +223,6 @@ class ProductController extends Controller
     // Return a view with success message
     return redirect()->route('products.index');
   }
+
+
 }

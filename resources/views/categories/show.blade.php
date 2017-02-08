@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ $category->category_name }} <small>Presente en {{ $category->products()->count() }} producto(s)</small></h1>
+      <h1>{{ $category->category_name }} <small>presente en {{count($products)}} producto(s)</small></h1>
     </div>
   </div>
   <hr>
@@ -13,12 +13,19 @@
   {{-- Start of row --}}
   <div class="row">
     <div class="col-xs-12">
-      @foreach ($category->products as $index => $product)
+      @foreach ($products as $index => $product)
         <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-3">
           <div class="panel-group text-center">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <strong itemprop="name"><h5>{{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}</h5></strong>
+                <strong itemprop="name">
+                  <h5>
+                    {{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}
+                    @if ($product->isInPromo())
+                      <i class="glyphicon glyphicon-star"></i>
+                    @endif
+                  </h5>
+                </strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)
@@ -32,10 +39,8 @@
                 @endif
                 <div itemprop="description">
                   <hr>
-                  <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                  <br>
-                  <strong> ID: </strong>{{ $product->id }}
-                  <br>
+                  <b>Venta por:</b> {{ $product->units }}
+                  <p>{{ $product->description }}</p>
                   <hr>
                 </div>
                 <div class="col-xs-12">

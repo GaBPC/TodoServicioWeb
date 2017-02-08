@@ -15,4 +15,8 @@ class Product extends Model
     {
       return $this->belongsToMany('App\Tag');
     }
+
+    public function isInPromo(){
+      return $this->promo;
+    }
 }

@@ -18,6 +18,19 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             // The name of the product
             $table->string('name');
+
+            $table->text('description')->nullable();
+
+            $table->double('price', 10, 2)->default($default = 0);
+
+            $table->string('units')->nullable();
+
+            $table->boolean('promo')->default(false);
+
+            $table->string('image')->nullable();
+
+            $table->integer('category_id')->default($default = 1)->unsigned();
+
             // created_at and modified_at columns
             $table->timestamps();
         });

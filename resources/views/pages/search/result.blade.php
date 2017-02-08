@@ -13,7 +13,7 @@
 @section('content')
 
   <div class="alert alert-info" role="alert">
-      Si aquí no encuentra lo que buscaba, no dude en solicitar un <a href="{{ url('custom') }}">presupuesto</a> personalizado con los productos que necesita.
+      Si aquí no encuentra lo que buscaba, no dude en agregarlo en la seccion de <a href="{{ url('budget') }}">Mi Presupuesto</a> y nosotros intentaremos conseguirlo.
   </div>
 
   <div class="col-xs-12">
@@ -27,7 +27,14 @@
           <div class="panel-group text-center">
             <div class="panel panel-success">
               <div class="panel-heading">
-                <strong itemprop="name"><h5>{{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}</h5></strong>
+                <strong itemprop="name">
+                  <h5>
+                    {{ strlen($product->name) <= 60 ? $product->name : substr($product->name,0,60) . "..."}}
+                    @if ($product->isInPromo())
+                      <i class="glyphicon glyphicon-star"></i>
+                    @endif
+                  </h5>
+                </strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)
@@ -41,8 +48,11 @@
                 @endif
                 <div itemprop="description">
                   <hr>
-                  <strong>Precio unitario: </strong>${{ $product->price }}
-                  <br>
+                  <p>{{ $product->description }}</p>
+                  @if ($product->isInPromo())
+                    <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
+                    <br>
+                  @endif
                   <strong> ID: </strong>{{ $product->id }}
                   <br>
                   <hr>
