@@ -23,19 +23,23 @@ Route::post('search', 'PagesController@postSearch');
 Route::get('contact', 'PagesController@getContact');
 // Location route
 Route::get('location', 'PagesController@getLocation');
-// Custom routes
-Route::get('custom', 'PagesController@getCustom');
-Route::post('custom', 'PagesController@postCustom');
+
 // Products routes
 Route::resource('products', 'ProductController');
+Route::get('promo', 'ProductController@promo');
 // Categories routes
-Route::resource('categories', 'CategoryController',['except' => ['create']]);
+Route::resource('categories', 'CategoryController',['except' => ['create','edit','update']]);
 // Tags routes
-Route::resource('tags', 'TagController',['except' => ['create']]);
-// ShopingCart routes
-Route::resource('cart', 'ShoppingCartController', ['except' => ['create','show']]);
-Route::get('cart/destroyAll','ShoppingCartController@destroyAll');
-Route::get('cart/submit','ShoppingCartController@submit');
+Route::resource('tags', 'TagController',['except' => ['create','edit','update']]);
+
+//
+Route::resource('buy', 'BuysController', ['except' => ['create','show', 'edit', 'update']]);
+Route::get('buy/send', 'BuysController@send')->name('buy.send');
+
+//
+Route::resource('budget', 'BudgetsController', ['except' => ['create','show', 'edit', 'update']]);
+Route::get('budget/send', 'BudgetsController@send')->name('budget.send');
+Route::post('budget/manual', 'BudgetsController@manual')->name('budget.manual');
 
 // Authentication routes
 Auth::routes();
@@ -43,4 +47,4 @@ Route::get('/home', 'HomeController@index');
 // Maling list routes
 Route::post('mailing', 'MailingContactController@saveContact');
 // Orders routes
-Route::resource('orders','OrderController');
+Route::resource('orders','OrderController', ['except' => ['create', 'store', 'edit', 'update']]);
