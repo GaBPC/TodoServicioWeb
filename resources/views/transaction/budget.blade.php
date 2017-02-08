@@ -12,6 +12,28 @@
 
 @section('content')
   <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-success text-center">
+        <div class="panel-body">
+          <center>
+            <h4>¿No encontró lo que buscaba? Agreguelo manualmente y nosotros lo intentaremos conseguir:</h4>
+            {!! Form::open(array('route' => 'budget.manual', 'class' => 'form-inline', 'method' => 'post')) !!}
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div class="form-group">
+              {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la descripción', 'required' => '')) }}
+            </div>
+            <div class="form-group">
+              {{ Form::text('quantity', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la cantidad', 'required' => '')) }}
+            </div>
+            <button type="submit" class="btn btn-default">Agregar</button>
+            {!! Form::close() !!}
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-xs-12 text-center">
       <table class="table">
         <thead>
@@ -52,24 +74,6 @@
           @endfor
         </tbody>
       </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <center>
-        <h4>¿No encontró lo que buscaba? Agreguelo manualmente y nosotros lo intentaremos conseguir:</h4>
-        {!! Form::open(array('route' => 'budget.manual', 'class' => 'form-inline', 'method' => 'post')) !!}
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <div class="form-group">
-          {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la descripción', 'required' => '')) }}
-        </div>
-        <div class="form-group">
-          {{ Form::text('quantity', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la cantidad', 'required' => '')) }}
-        </div>
-        <button type="submit" class="btn btn-default">Agregar</button>
-        {!! Form::close() !!}
-      </center>
     </div>
   </div>
 
