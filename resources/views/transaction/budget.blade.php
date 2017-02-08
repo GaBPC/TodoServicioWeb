@@ -65,7 +65,7 @@
           {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la descripción', 'required' => '')) }}
         </div>
         <div class="form-group">
-          {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la cantidad', 'required' => '')) }}
+          {{ Form::text('quantity', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la cantidad', 'required' => '')) }}
         </div>
         <button type="submit" class="btn btn-default">Agregar</button>
         {!! Form::close() !!}

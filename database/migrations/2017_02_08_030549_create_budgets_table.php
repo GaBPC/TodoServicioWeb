@@ -18,7 +18,7 @@ class CreateBudgetsTable extends Migration
           $table->integer('user_id')->unsigned();
           $table->integer('product_id')->unsigned()->nullable();
           $table->text('description')->nullable();
-          $table->double('quantity');
+          $table->string('quantity');
           $table->timestamps();
         });
     }
