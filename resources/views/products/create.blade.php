@@ -22,6 +22,9 @@
       {{ Form::label('description', 'Descripción') }}
       {{ Form::textarea('description', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la descripción del producto')) }}
       <br>
+      {{ Form::label('promo', 'Agregar a promociones: ') }}
+      {{ Form::checkbox('promo') }}
+      <br>
       {{ Form::label('units', 'Unidades de medida') }}
       {{ Form::text('units', null, array('class' => 'form-control', 'placeholder' => 'Ingrese la unidad de medida', 'required' => '')) }}
       <br>

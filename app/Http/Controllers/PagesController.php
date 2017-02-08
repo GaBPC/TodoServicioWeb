@@ -54,17 +54,21 @@ class PagesController extends Controller
         foreach ($tags as $tag) {
           $products = $tag->products;
           foreach ($products as $product) {
-            if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+            if (!$product->isInPromo()) {
+              if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+            }
           }
         }
         $tags = Category::where('category_name','like', '%' . $word .'%')->get();
         foreach ($tags as $tag) {
           $products = $tag->products;
           foreach ($products as $product) {
-            if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+            if (!$product->isInPromo()) {
+              if(!isset($data[$product->id])){ $data[$product->id] = $product; }
+            }
           }
         }
-        $products = Product::where('name','like','%' . $word . '%')->get();
+        $products = Product::where('promo', false)->where('name','like','%' . $word . '%')->get();
         foreach ($products as $product) {
           if(!isset($data[$product->id])){ $data[$product->id] = $product; }
         }

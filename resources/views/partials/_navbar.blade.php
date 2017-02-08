@@ -18,9 +18,18 @@
       <li class="{{ Request::is('promo') ? "active" : "" }}">
         <a title="Nuestras promociones" href="{{ url('promo') }}"><span class="glyphicon glyphicon-star"></span> Promociones</a>
       </li>
-      <li class="{{ Request::is('cart') ? "active" : "" }}">
-        <a title="Ver el carrito de compras" href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-piggy-bank"></span> Transacciones</a>
+        <ul class="dropdown-menu">
+          <li class="{{ Request::is('budget') ? "active" : "" }}">
+            <a title="Ver mi presupuesto" href="{{ url('budget') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Mi Presupuesto</a>
+          </li>
+          <li class="{{ Request::is('buys') ? "active" : "" }}">
+            <a title="Ver mis coompras" href="{{ url('buys') }}"><span class="glyphicon glyphicon-usd"></span> Mi Compra</a>
+          </li>
+        </ul>
       </li>
+
       <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-search"></i> Buscar</span></a>
           <ul class="dropdown-menu" style="padding: 15px;min-width: 275px;">
@@ -50,7 +59,7 @@
         </li>
       @else
         <li title="Opciones de la cuenta" class="{{ Request::is('home') ? "active" : "" }}">
-          <a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span>  Mi Cuenta</a>
+          <a href="{{ url('home') }}"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a>
         </li>
       @endif
     </ul>

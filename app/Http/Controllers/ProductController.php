@@ -29,11 +29,17 @@ class ProductController extends Controller
   public function index()
   {
     // Create a variable and store all the products in it from the Database
-    $products = Product::orderBy('id','desc')->paginate(5);
+    $products = Product::where('promo', false)->orderBy('id','desc')->paginate(5);
     // Create a variable and store all the categories in it from the Database
     $categories = Category::orderBy('category_name', 'asc')->get();
     // Return a view and pass in the above variable
     return view('products.index')->withProducts($products)->withCategories($categories);
+  }
+
+  public function promo()
+  {
+    $products = Product::where('promo', true)->get();
+    return view('products.promo')->withProducts($products);
   }
 
   /**
@@ -63,6 +69,7 @@ class ProductController extends Controller
       'description' => 'nullable|string',
       'units' => 'required|max:255',
       'category_id' => 'required|integer',
+      'promo' => 'boolean',
       'feature_image' => 'sometimes|image'
     );
     $this->validate($request, $rules);
@@ -73,6 +80,7 @@ class ProductController extends Controller
     $product->description = $request->description;
     $product->units = $request->units;
     $product->category_id = $request->category_id;
+    $product->promo = (is_null($request->promo)) ? false : true;
     // Save the image
     if ($request->hasFile('feature_image')) {
       $image = $request->file('feature_image');
@@ -216,9 +224,5 @@ class ProductController extends Controller
     return redirect()->route('products.index');
   }
 
-  public function promo()
-  {
-    $products = Product::where('promo', true)->get();
-    return view('products.promo')->withProducts($products);
-  }
+
 }

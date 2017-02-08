@@ -36,7 +36,10 @@ Route::resource('tags', 'TagController',['except' => ['create']]);
 // ShopingCart routes
 Route::resource('cart', 'ShoppingCartController', ['except' => ['create','show']]);
 Route::get('cart/destroyAll','ShoppingCartController@destroyAll');
-Route::get('cart/submit','ShoppingCartController@submit');
+Route::get('cart/submit/{type}','ShoppingCartController@submit');
+Route::get('buys','ShoppingCartController@getBuys');
+Route::get('budget','ShoppingCartController@getBudget');
+
 
 // Authentication routes
 Auth::routes();

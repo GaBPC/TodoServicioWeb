@@ -43,11 +43,9 @@
           <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-6 panel-group text-center">
             <div class="panel panel-info">
               <div class="panel-heading">
-                <strong itemprop="name"><h3>{{ $product->name }}
-                  @if ($product->isInPromo())
-                    <i class="glyphicon glyphicon-star"></i>
-                  @endif
-                </h3></strong>
+                <strong itemprop="name">
+                  <h3>{{ $product->name }}</h3>
+                </strong>
               </div>
               <div class="panel-body">
                 @if ($product->image != null)
@@ -61,37 +59,41 @@
                 @endif
                 <hr>
                 <div itemprop="description">
+                  <b>Venta por:</b> {{ $product->units }}
                   <p>{{ $product->description }}</p>
-                  @if ($product->isInPromo())
-                    <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                    <br>
-                  @endif
-                  <strong> ID: </strong>{{ $product->id }}
+                  {{-- @if ($product->isInPromo())
+                  <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
                   <br>
-                  <hr>
-                </div>
-                <div class="col-xs-12 col-md-offset-2 col-md-8">
-                  <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
-                </div>
+                @endif
+                <strong> ID: </strong>{{ $product->id }}
+                <br> --}}
+                @foreach ($product->tags as $tag)
+                  <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
+                @endforeach
+                <hr>
+              </div>
+              <div class="col-xs-12 col-md-offset-2 col-md-8">
+                <a itemprop="url" href="{{route('products.show', $product->id)}}" class="btn btn-info btn-sm btn-block">Más información</a>
               </div>
             </div>
           </div>
-          @if (($loop->index + 1) % 2 == 0)
-          </div>
-          <div class="row">
-          @endif
-        @endforeach
-      </div>
+        </div>
+        @if (($loop->index + 1) % 2 == 0)
+        </div>
+        <div class="row">
+        @endif
+      @endforeach
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <center>
-        {!! $products->links() !!}
-      </center>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <center>
+      {!! $products->links() !!}
+    </center>
   </div>
+</div>
 @endsection
 
 @section('js')
