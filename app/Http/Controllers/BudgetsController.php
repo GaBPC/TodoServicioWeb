@@ -133,15 +133,21 @@ class BudgetsController extends Controller
         // Adds the data of all items
         foreach ($items as $item) {
           // Gets the item's data
-          $product = Product::find($item->product_id);
           // Computes the data
-          $cod = "";
-          $name = (is_null($product->name)) ? $product->description : $product->name;
+          $product = Product::find($item->product_id);
+          if (is_null($product)) {
+            $name = $item->description;
+            $um = "";
+          }
+          else {
+            $name = $product->name;
+            $um = $product->units;
+          }
           $quantity = $item->quantity;
-          $um = $product->units;
-          $price = "";
+          $cod = "";
           $bonif = "";
           $impbonif = "";
+          $price="";
           $subtotal = "";
           // Appends the row with the data
           $sheet->appendRow([$cod,$name,$quantity, $um, $price,$bonif, $impbonif , $subtotal]);
