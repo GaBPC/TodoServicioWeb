@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ $tag->name }} <small>Presente en {{ $tag->products()->count() }} producto(s)</small></h1>
+      <h1>{{ $tag->name }} <small>presente en {{count($products)}} producto(s)</small></h1>
     </div>
   </div>
   <hr>
@@ -13,7 +13,7 @@
   {{-- Start of row --}}
   <div class="row">
     <div class="col-xs-12">
-      @foreach ($tag->products as $index => $product)
+      @foreach ($products as $index => $product)
         <div itemscope itemtype="https://schema.org/Product" class="col-xs-12 col-md-3">
           <div class="panel-group text-center">
             <div class="panel panel-primary">
@@ -39,13 +39,8 @@
                 @endif
                 <div itemprop="description">
                   <hr>
+                  <b>Venta por:</b> {{ $product->units }}
                   <p>{{ $product->description }}</p>
-                  @if ($product->isInPromo())
-                    <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                    <br>
-                  @endif
-                  <strong> ID: </strong>{{ $product->id }}
-                  <br>
                   <hr>
                 </div>
                 <div class="col-xs-12">

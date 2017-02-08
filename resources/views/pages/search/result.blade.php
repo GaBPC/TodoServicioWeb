@@ -13,7 +13,7 @@
 @section('content')
 
   <div class="alert alert-info" role="alert">
-      Si aquí no encuentra lo que buscaba, no dude en solicitar un <a href="{{ url('custom') }}">presupuesto</a> personalizado con los productos que necesita.
+      Si aquí no encuentra lo que buscaba, no dude en agregarlo en la seccion de <a href="{{ url('budget') }}">Mi Presupuesto</a> y nosotros intentaremos conseguirlo.
   </div>
 
   <div class="col-xs-12">

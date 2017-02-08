@@ -39,13 +39,9 @@
               @endif
               <hr>
               <div itemprop="description">
+                <b>Venta por:</b> {{ $product->units }}
                 <p>{{ $product->description }}</p>
-                @if ($product->isInPromo())
-                  <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                  <br>
-                @endif
-                <strong> ID: </strong>{{ $product->id }}
-                <br>
+                <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
                 <hr>
               </div>
               <div class="col-xs-12 col-md-offset-2 col-md-8">

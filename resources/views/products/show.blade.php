@@ -43,8 +43,8 @@
           <div class="col-xs-12">
             <center>
               @if ($product->isInPromo())
-                <h5><b>¡Reservar!</b></h5>
-                {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
+                <h5><b>¡Comprar!</b></h5>
+                {!! Form::open(array('route' => 'buy.store', 'method' => 'post', 'class' => 'form-inline')) !!}
                 <div class="input-group">
                   <input type="hidden" name="product_id" value="{{ $product->id }}">
                   {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}
@@ -58,7 +58,7 @@
                 {!! Form::close() !!}
               @else
                 <h5><b>Agregar al presupuesto</b></h5>
-                {!! Form::open(array('route' => 'cart.store', 'method' => 'post', 'class' => 'form-inline')) !!}
+                {!! Form::open(array('route' => 'budget.store', 'method' => 'post', 'class' => 'form-inline')) !!}
                 <div class="input-group">
                   <input type="hidden" name="product_id" value="{{ $product->id }}">
                   {{ Form::number('quantity', null, array('class' => 'form-control', 'placeholder' => '0', 'min' => '0'))}}

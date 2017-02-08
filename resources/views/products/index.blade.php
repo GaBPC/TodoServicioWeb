@@ -30,11 +30,6 @@
           </ul>
         </div>
       </div>
-      {{-- Personalized page link --}}
-      <center>
-        <a href="{{ url('custom') }}"><img class="img-responsive radius-border" src="{{asset('images/site-resources/personal.png')}}" alt="Solicitar un presupuesto personalizado."></a>
-        <br>
-      </center>
     </div>
 
     <div class="col-xs-12 col-md-8">
@@ -61,12 +56,6 @@
                 <div itemprop="description">
                   <b>Venta por:</b> {{ $product->units }}
                   <p>{{ $product->description }}</p>
-                  {{-- @if ($product->isInPromo())
-                  <strong>Precio unitario: </strong>${{ number_format((float)$product->price, 2, ',', '') }}
-                  <br>
-                @endif
-                <strong> ID: </strong>{{ $product->id }}
-                <br> --}}
                 @foreach ($product->tags as $tag)
                   <a href="{{ route('tags.show', $tag->id) }}"><span class="label label-default">{{ $tag->name }}</span></a>
                 @endforeach

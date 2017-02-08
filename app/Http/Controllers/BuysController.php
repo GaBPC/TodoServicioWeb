@@ -4,52 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use \App\Buy;
+use \App\Product;
+use \App\Order;
 use Auth;
-use App\ShoppingCart;
-use App\Product;
-use App\Order;
 use Session;
 use Excel;
 
-class ShoppingCartController extends Controller
+class BuysController extends Controller
 {
+
   public function __construct()
   {
     $this->middleware('auth');
   }
 
-  public function getBuys()
+  /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index()
   {
     $buys = array();
     $buys['counter'] = 0;
     $buys['total'] = 0;
 
     $user = Auth::user();
-    $items = ShoppingCart::where('user_id',$user->id)->where('type', ShoppingCart::BUY)->get();
+    $items = Buy::where('user_id',$user->id)->get();
     foreach ($items as $item) {
       $product = Product::find($item->product_id);
       $buys[$buys['counter']] = array('id' => $item->id , 'product' => $product , 'quantity' => $item->quantity);
       $buys['total'] += $product->price * $item->quantity;
       $buys['counter']++;
     }
-    return view('cart.buys')->withBuys($buys);
-  }
-
-  public function getBudget()
-  {
-    $budgets = array();
-    $budgets['counter'] = 0;
-    $budgets['total'] = 0;
-
-    $user = Auth::user();
-    $items = ShoppingCart::where('user_id',$user->id)->where('type', ShoppingCart::BUDGET)->get();
-    foreach ($items as $item) {
-      $product = Product::find($item->product_id);
-      $budgets[$budgets['counter']] = array('id' => $item->id , 'product' => $product , 'quantity' => $item->quantity);
-      $budgets['total'] += $product->price * $item->quantity;
-      $budgets['counter']++;
-    }
-    return view('cart.budget')->withBudgets($budgets);
+    return view('transaction.buys')->withBuys($buys);
   }
 
   /**
@@ -62,21 +51,17 @@ class ShoppingCartController extends Controller
   {
     if($request->quantity != null){
       $user_id = Auth::user()->id;
-      $items_cart = ShoppingCart::where('user_id', $user_id)->where('product_id', $request->product_id)->get();
+      $items_cart = Buy::where('user_id', $user_id)->where('product_id', $request->product_id)->get();
       if(count($items_cart) > 0){
         $items_cart[0]->quantity = $items_cart[0]->quantity + $request->quantity;
         $items_cart[0]->save();
       }
       else {
-        $cart_item = new ShoppingCart();
-        $cart_item->user_id = $user_id;
-        $cart_item->product_id = $request->product_id;
-        $cart_item->quantity = $request->quantity;
-
-        $product = Product::find($request->product_id);
-        $cart_item->type = ($product->isInPromo()) ? ShoppingCart::BUY : ShoppingCart::BUDGET;
-
-        $cart_item->save();
+        $item = new Buy();
+        $item->user_id = $user_id;
+        $item->product_id = $request->product_id;
+        $item->quantity = $request->quantity;
+        $item->save();
       }
       Session::flash('successMessage','El producto ha sido agregado al carrito');
     }
@@ -94,30 +79,19 @@ class ShoppingCartController extends Controller
   */
   public function destroy($id)
   {
-    $cart_item = ShoppingCart::find($id);
-    $cart_item->delete();
+    $item = Buy::find($id);
+    $item->delete();
     Session::flash('errorMessage','El producto ha sido borrado del carrito');
-    return redirect()->route('cart.index') ;
+    return redirect()->route('buy.index') ;
   }
 
-  // public function destroyAll()
-  // {
-  //   $user_id = Auth::user()->id;
-  //   $items = ShoppingCart::where('user_id',$user_id)->get();
-  //   foreach ($items as $cart_item) {
-  //     $cart_item->delete();
-  //   }
-  //   Session::flash('errorMessage','El carrito fue vaciado correctamente');
-  //   return redirect()->route('cart.index') ;
-  // }
-
-  public function submit($type)
+  public function send()
   {
     // Maatwebsite excel
-    $file_name = $type . time();
-    Excel::create($file_name, function($excel) use($type) {
+    $file_name = 'compra' . time();
+    Excel::create($file_name, function($excel){
       // Sets the sheet name
-      $excel->sheet('Pedido de compra', function($sheet) use($type) {
+      $excel->sheet('Pedido de compra', function($sheet){
         // User who is buying
         $user = Auth::user();
         // Adds the user's data
@@ -128,7 +102,7 @@ class ShoppingCartController extends Controller
         // Adds the titles
         $sheet->appendRow(["Código","Producto","Cantidad","U. Medida","Precio","% Bonif.","Imp. Bonif","Subtotal"]);
         // Gets all the user's items where the transaction type is $type
-        $items = ShoppingCart::where('user_id',$user->id)->where('type',$type)->get();
+        $items = Buy::where('user_id',$user->id)->get();
         // Adds the data of all items
         foreach ($items as $item) {
           // Gets the item's data
@@ -159,19 +133,11 @@ class ShoppingCartController extends Controller
     $order = new Order();
     $order->user_email = Auth::user()->email;
     $order->file_name = $file_name . '.xls';
-    $order->type = Order::CART_ID;
+    $order->type = Order::BUY_ID;
     $order->save();
     // Sets the success flash message
-    Session::flash('successMessage','El pedido se ha realizado con exito');
+    Session::flash('successMessage','Su compra se ha recibido, en la brevedad nos comunicaremos con usted vía mail.');
     // Redirects to the custom page
-    $url = "";
-
-    if($type == ShoppingCart::BUY){
-      $url = ShoppingCart::BUY_URL;
-    }
-    else {
-      $url = ShoppingCart::BUDGET_URL;
-    }
-    return redirect()->to($url);
+    return redirect()->route('buy.index');
   }
 }

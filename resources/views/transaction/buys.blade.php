@@ -34,7 +34,7 @@
               <td class="text-center">{{$buys[$i]['quantity']}} {{ $buys[$i]['product']->units }}</td>
               <td class="text-center">{{ $buys[$i]['product']->price * $buys[$i]['quantity'] }}</td>
               <td class="text-center">
-                {!! Form::open(array('route' => ['cart.destroy', $buys[$i]['id']], 'method' => 'delete')) !!}
+                {!! Form::open(array('route' => ['buy.destroy', $buys[$i]['id']], 'method' => 'DELETE')) !!}
                 {{ Form::submit('-', array('class' => 'btn btn-danger btn-block')) }}
                 {!! Form::close() !!}
               </td>
@@ -59,7 +59,7 @@
   <div class="row">
     <hr>
     <div class="col-xs-12 col-md-offset-4 col-md-4">
-      <a href="{{ url('cart/submit',\App\ShoppingCart::BUY) }}" class="btn btn-success btn-block">Realizar compra</a>
+      <a href="{{ route('buy.send') }}" class="btn btn-success btn-block">Realizar mi compra</a>
     </div>
   </div>
 @endsection

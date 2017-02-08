@@ -56,7 +56,13 @@ class TagController extends Controller
   public function show($id)
   {
     $tag = Tag::find($id);
-    return view('tags.show')->withTag($tag);
+    $products_array = array();
+    foreach ($tag->products as $product) {
+      if (!$product->isInPromo()) {
+        array_push($products_array, $product);
+      }
+    }
+    return view('tags.show')->withTag($tag)->withProducts($products_array);
   }
 
   /**

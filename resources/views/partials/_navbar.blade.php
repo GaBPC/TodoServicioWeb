@@ -25,7 +25,7 @@
             <a title="Ver mi presupuesto" href="{{ url('budget') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Mi Presupuesto</a>
           </li>
           <li class="{{ Request::is('buys') ? "active" : "" }}">
-            <a title="Ver mis coompras" href="{{ url('buys') }}"><span class="glyphicon glyphicon-usd"></span> Mi Compra</a>
+            <a title="Ver mis compras" href="{{ url('buy') }}"><span class="glyphicon glyphicon-usd"></span> Mi Compra</a>
           </li>
         </ul>
       </li>
