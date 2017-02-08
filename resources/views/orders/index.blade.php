@@ -6,8 +6,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h1>Presupuestos pendientes de revisión</h1>
-
+      <h1>Compras pendientes de revisión</h1>
       <table class="table">
         <thead>
           <th>Mail</th>
@@ -40,8 +39,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <h1>Compras pendientes de revisión</h1>
-
+      <h1>Presupuestos pendientes de revisión</h1>
       <table class="table">
         <thead>
           <th>Mail</th>
