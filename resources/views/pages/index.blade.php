@@ -67,7 +67,7 @@ body{
       <div class="col-xs-12 col-md-8">
         <h1>Pida su presupuesto</h1>
         <h4><b>Seleccione</b> los productos que le interesen, elija la cantidad que necesita y obtenga el presupuesto correspondiente.</h4>
-        <h4>Si no encuentra lo que necesita, <b>agreguelo</b> manualmente desde la seccion de <a href="{{url('budget')}}">Mi Presupuesto</a> y nosotros intentaremos conseguirlo.</h4>
+        <h4>Si no encuentra lo que necesita, <b>agréguelo</b> manualmente desde la seccion de <a href="{{url('budget')}}">Mi Presupuesto</a> y nosotros intentaremos conseguirlo.</h4>
         <hr>
         <a href="{{url('products')}}" class="btn btn-success btn-lg">Ver Productos</a>
       </div>
@@ -99,7 +99,7 @@ body{
       </div>
       <div class="col-xs-12 col-md-8" >
         <h1>Nos encontramos en Mar del Plata</h1>
-        <h3>Mire donde puede encontrarno</h3>
+        <h3>Mire donde puede encontrarnos.</h3>
         <hr>
         <a href="{{url('location')}}" class="btn btn-danger btn-lg">Ver Ubicaciones</a>
       </div>
