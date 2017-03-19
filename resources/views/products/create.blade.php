@@ -56,6 +56,8 @@
   {!! Html::script('js/parsley.min.js') !!}
   {!! Html::script('js/select2.min.js') !!}
   <script type="text/javascript">
-    $(".select2multiple").select2();
+    $(".select2multiple").select2({
+      placeholder: 'Palabras claves',
+    });
   </script>
 @endsection

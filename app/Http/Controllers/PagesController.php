@@ -15,7 +15,11 @@ class PagesController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth', ['only' => ['postCustom','getCustom']]);
+    $this->middleware('auth', ['only' => ['home', 'postCustom','getCustom']]);
+  }
+
+  public function home(){
+    return view('home');
   }
 
   public function getCookies()

@@ -22,7 +22,6 @@ body{
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
 
-
       </ol>
       <div class="item active">
         <img src="{{ asset("images/site-resources/carousel/img0.png") }}" alt="" style=" min-height: 175px">

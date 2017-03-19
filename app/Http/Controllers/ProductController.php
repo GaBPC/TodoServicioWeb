@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Category;
-use App\ShoppingCart;
 use App\Tag;
+use App\Buy;
+use App\Budget;
 use Auth;
 use Image;
 use Storage;
@@ -151,7 +152,7 @@ class ProductController extends Controller
   */
   public function update(Request $request, $id)
   {
-    // Validate the Database
+    // Validate the Data
     $rules = array(
       'name' => 'required|max:255',
       'price' => 'required|numeric|min:0|max:99999999',
@@ -211,8 +212,12 @@ class ProductController extends Controller
     if($product->image != null){
       Storage::delete($product->image);
     }
-    // Deletes all rows of the shpping car where the product was present
-    $items = ShoppingCart::where('product_id',$id)->get();
+    // Deletes all rows of the shopping car where the product was present
+    $items = Buy::where('product_id',$id)->get();
+    foreach ($items as $item) {
+      $item->delete();
+    }
+    $items = Budget::where('product_id',$id)->get();
     foreach ($items as $item) {
       $item->delete();
     }

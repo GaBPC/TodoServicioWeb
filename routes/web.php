@@ -43,7 +43,7 @@ Route::post('budget/manual', 'BudgetsController@manual')->name('budget.manual');
 
 // Authentication routes
 Auth::routes();
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'PagesController@home');
 // Maling list routes
 Route::post('mailing', 'MailingContactController@saveContact');
 // Orders routes
