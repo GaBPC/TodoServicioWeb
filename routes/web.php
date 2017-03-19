@@ -19,8 +19,6 @@ Route::get('/', 'PagesController@getIndex');
 Route::get('denied', 'PagesController@getDenied');
 // Search routes
 Route::post('search', 'PagesController@postSearch');
-// Contact route
-Route::get('contact', 'PagesController@getContact');
 // Location route
 Route::get('location', 'PagesController@getLocation');
 

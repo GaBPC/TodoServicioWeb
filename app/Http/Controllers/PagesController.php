@@ -87,10 +87,6 @@ class PagesController extends Controller
     return view('pages.search.result')->withProducts($data);
   }
 
-  public function getContact()  {
-    return view('pages.contact');
-  }
-
   public function getLocation()  {
     return view('pages.location');
   }
